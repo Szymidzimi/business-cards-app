@@ -1,13 +1,15 @@
+import Nav from "./navBar/navbar";
+
 
 function App() {
 
-  fetch("http://localhost:8080/books/getBooks")
+  fetch("http://localhost:8080/enterprises/getEnterprises")
   .then((response) => response.json())
   .then((data) => console.log(data));
   return (
-    <div >
-     Test
-    </div>
+    <div>
+    <Nav/></div>
+    
   );
 }
 
