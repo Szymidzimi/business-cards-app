@@ -1,0 +1,23 @@
+.notFoundContainer{
+  width: 50vw;
+  height: 50vh;
+  display:flex;
+  flex-direction: column;
+  padding: auto;
+  text-align: center;
+  margin: 10px auto;
+  align-content:space-between;
+  gap:3rem
+}
+.textMain{
+  font-size: 42px;
+}
+
+.button{
+  margin: 20px auto;
+  padding: 17px 30px;
+  border-radius: 10px;
+  background: #2e7eed;
+  color: #fff;
+  outline: none;
+}
