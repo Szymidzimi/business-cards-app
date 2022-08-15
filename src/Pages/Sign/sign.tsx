@@ -6,6 +6,7 @@ import { useEffect ,useState} from "react";
 const Sign: React.FC = () => {
 
   const navigate=useNavigate();
+  const [errorMessage, setErrorMessage] = useState("")
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,18 +18,24 @@ const Sign: React.FC = () => {
       password: password,
     };
 
-    await fetch("/login", {
+    try {
+      
+    const response=await fetch("/login", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(user),
     })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("token", data.token);
-        navigate("/");
-      });
+      const data =await response.json()
+      localStorage.setItem("token", data.token);
+      navigate("/sign");
+      setErrorMessage(data.message);
+      console.log(data.message);
+    } catch (error:any) {
+      console.log(error)
+      setErrorMessage(error)
+    }
   }
   useEffect(() => {
     fetch("/isUserAuth", {
@@ -37,7 +44,9 @@ const Sign: React.FC = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? navigate("/") : null));
+      .then((data) => (data.isLoggedIn ? navigate("/sign") : null))
+      .catch(err => setErrorMessage(err)) 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -63,7 +72,7 @@ const Sign: React.FC = () => {
         </form>
 
         <p>Don't Have an account? <Link to="../register">SIGN UP</Link></p>
-
+        <p> {errorMessage}</p>
       </div>
     </>
   );
