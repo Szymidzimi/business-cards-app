@@ -5,6 +5,7 @@ import { useEffect ,useState} from "react";
 const Register: React.FC = () => {
 
   const navigate=useNavigate();
+  const [errorMessage, setErrorMessage] = useState<string>("")
   const [username, setUsername] = useState<string>("");
   const [email, setUserEmail] = useState<string>("");
   const [password, setUserPassword] = useState<string>("");
@@ -18,17 +19,22 @@ const Register: React.FC = () => {
       email:email,
       password: password,
     };
-
-    await fetch("/register", {
+    try {
+    const response=await fetch("/register", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify(user),
     })
-    .then((data) => {
+     const data =await response.json()
       navigate("/sign");
-    });
+      setErrorMessage(data.message);
+      console.log(data.message);
+    } catch (error:any) {
+      console.log(error)
+      setErrorMessage(error)
+    }
    
   }
   useEffect(() => {
@@ -38,7 +44,8 @@ const Register: React.FC = () => {
       },
     })
       .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? navigate("/") : null));
+      .then((data) => (data.isLoggedIn ? navigate("/") : null))
+      .catch(err => setErrorMessage(err)) 
       // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -74,6 +81,7 @@ const Register: React.FC = () => {
       
 
       <div className="social-block">
+        <p>{errorMessage}</p>
         <a className="btn btn-block" href="/auth/google" role="button">
           <i className="fab fa-google"></i>
           Sign Up with Google

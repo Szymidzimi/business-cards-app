@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import {Link} from "react-router-dom";
 import {faBars,faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router";
 
 // import React, { useRef } from "react";
 const Navbar: React.FC = () => {
@@ -14,6 +15,12 @@ const Navbar: React.FC = () => {
   //   }
   //   navRef.current.classList.toggle("hideNav");
   // };
+  const navigate=useNavigate();
+  async function logout() {
+    localStorage.removeItem("token")
+    navigate("/");
+}
+
   const [Mobile, setMobile] = useState(false)
   return (
     <header>
@@ -23,34 +30,13 @@ const Navbar: React.FC = () => {
           <Link to='/'><li className="topListItem">HOME</li></Link>
           <Link to='/search'><li className="topListItem">SEARCH ENTERPRISE</li></Link>
           <Link to='/add'><li className="topListItem">ADD ENTERPRISE</li></Link>
-          <Link to='/sign'><li className="topListItem">SIGN IN</li></Link>
+          {(localStorage.getItem('token'))?<li><button className="logoutButton" onClick={logout}>LOGOUT</button></li>:<Link to='/sign'><li className="topListItem">SIGN IN</li></Link>}
         </ul>
         <button className='mobile-menu-icon' onClick={() => setMobile(!Mobile)}>
           {Mobile ? <FontAwesomeIcon icon={faTimes} /> : <FontAwesomeIcon icon={faBars} />}
         </button>
     </nav>
     </header>
-
-
-    // <header>
-    //   <a href="/#" className="logo">
-    //     <span>C</span>ards<span>O</span>f<span>agriculture</span>
-    //   </a>
-    //   <nav ref={navRef}>
-    //     <a href="/#">HOME</a>
-    //     <a href="/#">SEARCH ENTERPRISE</a>
-    //     <a href="/#">ADD ENTERPRISE</a>
-    //     <a href="/#">SIGN IN</a>
-    //     <button className="nav-btn nav-close-btn" onClick={showNavbar}>
-    //       <FontAwesomeIcon icon={faTimes} />
-    //     </button>
-    //   </nav>
-    //   <button className="nav-btn" onClick={showNavbar}>
-        
-    //     <FontAwesomeIcon icon={faBars} />
-    //   </button>
-    // </header>
-    
   );
 };
 

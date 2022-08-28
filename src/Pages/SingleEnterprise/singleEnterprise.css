@@ -1,0 +1,47 @@
+
+.main-container-to-enterprise{
+  display:flex;
+  flex-direction: column;
+  width: 90vw;
+  margin: auto;
+}
+.container-enterprise{
+  display: flex;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  text-align: center;
+  margin:20px auto;
+  text-decoration: none;
+  color:black;
+}
+.info-section-card{
+  
+}
+.logo-enterpise{
+  width: 40em;
+  margin-left: 0;
+  border: 1px solid #cccccc;
+
+  border-radius: 20px;
+}
+.title-enterprise{
+  font-size: 2em;
+  text-align: left;
+  margin-bottom: 15px;
+}
+.information-card{
+
+}
+.album-photo{
+  border: 1px solid #cccccc;
+  height: 50vh;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.map-section{
+  border: 1px solid #cccccc;
+  height: 50vh;
+  border-radius: 20px;
+  text-align: center;
+}

@@ -6,7 +6,7 @@ import { useEffect ,useState} from "react";
 const Sign: React.FC = () => {
 
   const navigate=useNavigate();
-  const [errorMessage, setErrorMessage] = useState("")
+  const [errorMessage, setErrorMessage] = useState<string>("")
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -28,7 +28,8 @@ const Sign: React.FC = () => {
       body: JSON.stringify(user),
     })
       const data =await response.json()
-      localStorage.setItem("token", data.token);
+      if(data && data.token){
+      localStorage.setItem("token", data.token)};
       navigate("/sign");
       setErrorMessage(data.message);
       console.log(data.message);

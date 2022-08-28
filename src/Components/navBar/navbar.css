@@ -20,8 +20,6 @@ nav {
   align-items: center;
   height: 10vh;
   box-shadow: rgba(50, 50, 93, 0.23) 0px 30px 30px -20px;
-
-  /*box-shadow: rgba(50, 50, 93, 0.23) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;*/
 }
 .logo {
   font-size: 30px;
@@ -57,6 +55,29 @@ button {
   font-size: 20px;
   background: none;
 }
+.logoutButton{
+  margin: 0 auto;
+  margin-right: 0;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background: #2e7eed;
+  color: #fff;
+  outline: none;
+}
+@media (max-width: 1024px) {
+  ul li {
+    padding: 15px;
+    width: 100%;
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+    font-size: 15px!important;
+  }
+  .logoutButton{
+    margin: 0 auto;
+    font-size: 15px!important;
+  }
+
+}
 @media (max-width: 768px) {
 
   .nav-links {
@@ -86,5 +107,9 @@ button {
   }
   .hero h1 {
     font-size: 50px;
+  }
+  .logoutButton{
+    margin: 0 auto;
+    
   }
 }

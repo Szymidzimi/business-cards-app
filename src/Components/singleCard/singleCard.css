@@ -1,0 +1,32 @@
+
+.container-single-card{
+  display: flex;
+  width: 45vw;
+  height: 300px;
+  padding: 50px 50px 50px 0;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  color:black;
+  margin-bottom: 20px;
+}
+.logo-card{
+  width: 30em;
+  margin-left: 0;
+}
+.title-card{
+  font-size: 2em;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.contact-card{
+  margin-top: 50px;
+}
+@media (max-width: 1024px) {
+  .container-single-card{
+    width: 80vw;
+  }
+
+}
