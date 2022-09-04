@@ -19,15 +19,6 @@
 .registerForm label{
   font-size: 22px;
 }
-.registerInput{
-  background: #fff;
-  padding: 15px 20px;
-  height: 48px;
-  margin-top: 1.5rem ;
-  margin-bottom: 1.5rem;
-  border: 1px solid #cccccc;
-  font-size: 14px;
-}
 .registerButton{
   margin: 0 auto;
   padding: 17px 30px;

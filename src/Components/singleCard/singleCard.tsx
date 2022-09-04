@@ -34,7 +34,6 @@ const SingleCard = ({ enterprise }: Props) => {
             <div className="contact-card">Dane kontaktowe: 
             <p>tel:{enterprise.numberPhone}</p><p>Adres:{enterprise.city},{enterprise.street},{enterprise.number}</p></div>
             <div className="next-to">
-             Przejdz do
             </div>
           </div>
         </div>

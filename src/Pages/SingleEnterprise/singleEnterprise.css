@@ -14,9 +14,7 @@
   text-decoration: none;
   color:black;
 }
-.info-section-card{
-  
-}
+
 .logo-enterpise{
   width: 40em;
   margin-left: 0;
@@ -44,4 +42,50 @@
   height: 50vh;
   border-radius: 20px;
   text-align: center;
+}
+
+.entrprise-content{
+    padding: 25px;
+    margin-bottom: 50px;
+    text-align: left;
+    background: #fafafa;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    border-radius: 3rem;
+    box-shadow: rgba(50, 50, 93, 0.23) 30px 30px 30px -20px;
+}
+.entrprise-header{
+    padding: 1rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+.entrprise-title{
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+.entrprise-body{
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+.block-2{
+    display: flex;
+    margin-bottom: 70px;
+}
+.title-section{
+    width: 30%;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 25px;
+    margin-bottom: 0;
+}
+.details-section{
+    width: 70%;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 25px;
+    color: #808080;
+    margin-bottom: 0;
 }

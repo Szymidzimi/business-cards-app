@@ -2,6 +2,7 @@ import "./sign.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { useEffect ,useState} from "react";
+import InputComponent from "../../Components/inputComponent/inputComponent"
 
 const Sign: React.FC = () => {
 
@@ -39,15 +40,15 @@ const Sign: React.FC = () => {
     }
   }
   useEffect(() => {
-    fetch("/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token") || "",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? navigate("/sign") : null))
-      .catch(err => setErrorMessage(err)) 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // fetch("/isUserAuth", {
+    //   headers: {
+    //     "x-access-token": localStorage.getItem("token") || "",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => (data.isLoggedIn ? navigate("/sign") : null))
+    //   .catch(err => setErrorMessage(err)) 
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -56,17 +57,17 @@ const Sign: React.FC = () => {
         <span className="signTitle">Sign In</span>
         <form className="signForm" onSubmit={event=>handleSubmit(event)}>
           <label>Username / Email</label>
-          <input
-            className="signInput"
+          <InputComponent
             type="text"
-            onChange={(e)=>setUsername(e.target.value)}
+            value={username}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setUsername(e.target.value)}
             placeholder="Enter your username / email..."
           />
           <label>Password</label>
-          <input
-            className="signInput"
+          <InputComponent
             type="password"
-            onChange={(e)=>setPassword(e.target.value)}
+            value={password}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setPassword(e.target.value)}
             placeholder="Enter your password..."
           />
           <button className="signButton" type="submit">SIGN IN</button>

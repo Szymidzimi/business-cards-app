@@ -1,6 +1,7 @@
 import "./register.css";
+import InputComponent from "../../Components/inputComponent/inputComponent"
 import { useNavigate } from "react-router";
-import { useEffect ,useState} from "react";
+import React, { useEffect ,useState} from "react";
 
 const Register: React.FC = () => {
 
@@ -38,15 +39,15 @@ const Register: React.FC = () => {
    
   }
   useEffect(() => {
-    fetch("/isUserAuth", {
-      headers: {
-        "x-access-token": localStorage.getItem("token") || "",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => (data.isLoggedIn ? navigate("/") : null))
-      .catch(err => setErrorMessage(err)) 
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+    // fetch("/isUserAuth", {
+    //   headers: {
+    //     "x-access-token": localStorage.getItem("token") || "",
+    //   },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => (data.isLoggedIn ? navigate("/") : null))
+    //   .catch(err => setErrorMessage(err)) 
+    //   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -55,24 +56,24 @@ const Register: React.FC = () => {
         <span className="registerTitle">Register</span>
         <form className="registerForm"  onSubmit={event=>handleSubmit(event)}>
           <label>Username</label>
-          <input
-            className="registerInput"
+          <InputComponent
             type="text"
-            onChange={(e)=>setUsername(e.target.value)}
+            value={username}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setUsername(e.target.value)}
             placeholder="Enter your username..."
           />
           <label>Email</label>
-          <input
-            className="registerInput"
+          <InputComponent
             type="text"
-            onChange={(e)=>setUserEmail(e.target.value)}
+            value={email}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setUserEmail(e.target.value)}
             placeholder="Enter your email..."
           />
           <label>Password</label>
-          <input
-            className="registerInput"
+          <InputComponent
             type="password"
-            onChange={(e)=>setUserPassword(e.target.value)}
+            value={password}
+            onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setUserPassword(e.target.value)}
             placeholder="Enter your password..."
           />
           <button className="registerButton">Register</button>
