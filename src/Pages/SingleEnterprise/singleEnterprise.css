@@ -63,27 +63,31 @@
     border-top-right-radius: 0.3rem;
 }
 .entrprise-title{
+    font-size: 2.7rem;
     margin-bottom: 0;
     line-height: 1.5;
 }
 .entrprise-body{
-    flex: 1 1 auto;
+
     padding: 1rem;
 }
 .block-2{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     margin-bottom: 70px;
+    font-size: 16px;
 }
 .title-section{
-    width: 30%;
-    font-size: 16px;
+    min-width: 30%;
+    font-size: 1.4rem;
     letter-spacing: 0;
     line-height: 25px;
     margin-bottom: 0;
 }
 .details-section{
-    width: 70%;
-    font-size: 16px;
+    min-width: 70%;
+    font-size: 1.4rem;
     letter-spacing: 0;
     line-height: 25px;
     color: #808080;

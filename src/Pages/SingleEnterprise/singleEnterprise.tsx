@@ -14,6 +14,9 @@ type enterprise = {
   rating: number;
   typeOfEnterprises: string;
   logoEnterprise: string;
+  voivodeship:string;
+  zipCode:string;
+  webside:string;
 };
 
 const SingleEnterprise = () => {
@@ -47,19 +50,20 @@ const SingleEnterprise = () => {
             <div className="block-2">
               <div className="title-section">Dane adresowe:</div>
               <div className="details-section">
-              Adres (ulica):
-              Adres (ulica): Ogrodowa 11
-              Kod Pocztowy: 84-200
-              Miasto: Wejherowo
-              Województwo: Pomorskie
-              {singleEnterprise?.description}
+              Adres (ulica): {singleEnterprise?.street} Nr. {singleEnterprise?.number}<br/>
+              Kod Pocztowy: {singleEnterprise?.zipCode} <br/>
+              Miasto: {singleEnterprise?.city} <br/>
+              Województwo: {singleEnterprise?.voivodeship}
+           
               </div>
             </div>
             {/* <!-- About --> */}
             <div className="block-2">
               <div className="title-section">Dane kontaktowe:</div>
               <div className="details-section">
-                {singleEnterprise?.description}
+              Tel: {singleEnterprise?.numberPhone} <br/>
+              Email: {singleEnterprise?.email} <br/>
+              Strona <a href="{singleEnterprise?.webside}">{singleEnterprise?.webside}</a><br/>
               </div>
             </div>
             {/* <!-- About --> */}
