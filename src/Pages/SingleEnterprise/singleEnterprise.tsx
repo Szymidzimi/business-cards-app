@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Map from "../../Components/map/map"
 import "./singleEnterprise.css";
 
 type enterprise = {
@@ -17,6 +18,8 @@ type enterprise = {
   voivodeship:string;
   zipCode:string;
   webside:string;
+  latitude:number;
+  longitude:number;
 };
 
 const SingleEnterprise = () => {
@@ -92,7 +95,9 @@ const SingleEnterprise = () => {
           <div className="logo-enterpise">LOGO</div>
         </div> */}
         <div className="album-photo">fotki</div>
-        <div className="map-section">Mapa</div>
+        <div className="map-section">      
+          <Map name={singleEnterprise?.name} city={singleEnterprise?.city} longitude={singleEnterprise?.longitude} latitude={singleEnterprise?.latitude}/>
+      </div>
       </div>
     </>
   );

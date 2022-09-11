@@ -2,21 +2,6 @@ import { useEffect, useState } from "react";
 import SingleCard from "../../Components/singleCard/singleCard";
 import "./search.css";
 
-// type Props = {
-//   enterprise: {
-//     _id: number;
-//     name: string;
-//     city: string;
-//     street: string;
-//     number: number;
-//     numberPhone: number;
-//     email: string;
-//     description: string;
-//     rating: number;
-//     typeOfEnterprises: string;
-//   };
-// };
-
 const Search = () => {
   const [enterprises, setEnterprises] = useState([]);
 
