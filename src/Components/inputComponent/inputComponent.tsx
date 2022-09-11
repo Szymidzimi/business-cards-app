@@ -1,11 +1,19 @@
 import "./inputComponent.css";
 
-const InputComponent = (props:any) => {
+type Props={
+  type:string,
+  value:string,
+  placeholder:string,
+  onChange:(e:React.ChangeEvent<HTMLInputElement>)=>void;
+}
+const InputComponent = (props:Props) => {
   return (
     <input
     className="registerInput"
     type={props.type}
-    placeholder={props.placeholder}/>
+    value={props.value}
+    placeholder={props.placeholder}
+    onChange={props.onChange}/>
 
 );
 };

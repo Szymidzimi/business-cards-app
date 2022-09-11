@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Map from "../../Components/map/map"
 import "./singleEnterprise.css";
 
-type enterprise = {
+export type enterprise = {
   _id: number;
   name: string;
   city: string;
@@ -78,25 +78,9 @@ const SingleEnterprise = () => {
             </div>
           </div>
         </div>
-        {/* <div className="container-enterprise">
-          <div className="info-section-card">
-            <div className="title-enterprise">
-              <h3>{singleEnterprise?.name}</h3>
-            </div>
-            <div className="contact-card">Dane adresowe:
-              {singleEnterprise?.city}
-              {singleEnterprise?.city}
-              {singleEnterprise?.city}
-              Dane kontaktowe:
-            </div>
-            <div className="information-card">Opis Firmy: {singleEnterprise?.description}</div>
-            <div className="information-card">Opis działalności: {singleEnterprise?.description}</div>
-          </div>
-          <div className="logo-enterpise">LOGO</div>
-        </div> */}
         <div className="album-photo">fotki</div>
         <div className="map-section">      
-          <Map name={singleEnterprise?.name} city={singleEnterprise?.city} longitude={singleEnterprise?.longitude} latitude={singleEnterprise?.latitude}/>
+          {singleEnterprise&&<Map enterprise={singleEnterprise}/>}
       </div>
       </div>
     </>

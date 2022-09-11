@@ -4,27 +4,25 @@ import 'leaflet/dist/leaflet'
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useState } from "react";
 import Leaflet  from "leaflet";
+import {enterprise} from "../../Pages/SingleEnterprise/singleEnterprise"
 
-// type Props = {
-
-//     _id: number;
-//     name: string;
-//     city: string;
-
-// };
 
 const markerIcon =new Leaflet.Icon({
   iconUrl:"https://icon-library.com/images/marker-icon/marker-icon-16.jpg",
   iconSize:[45,45]
 })
 
-const Map= (props:any) => {
+const Map= (props:{enterprise:enterprise}) => {
 
-//   const latlngs: [number, number] = [
-//     props.lon, props.lat
-// ];
+  let latlngs: [number, number] = [
+    52.232222, 21.008333
+  ]
+  if(props.enterprise.longitude&&props.enterprise.latitude){
+    latlngs=[props.enterprise.longitude, props.enterprise.latitude]
+  }
 
-const [latlngs, setLatlngs] = useState<[number, number]>([50.901111, 19.028889]);
+
+// const [latlngs, setLatlngs] = useState<[number, number]>([props.enterprise.longitude, props.enterprise.latitude]);
 
   const propMap={
     center:latlngs,
@@ -36,12 +34,11 @@ const [latlngs, setLatlngs] = useState<[number, number]>([50.901111, 19.028889])
       <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[50.901111, 19.028889]} icon={markerIcon}>
+      <Marker position={latlngs} icon={markerIcon}>
         <Popup>
-          {props.lon}
-          {props.lat}
-          {props.name}
-          {props.city}
+
+          {props.enterprise.name}
+          {props.enterprise.city}
         </Popup>
       </Marker>
     </MapContainer>

@@ -5,16 +5,8 @@ import {faBars,faTimes} from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router";
 
-// import React, { useRef } from "react";
 const Navbar: React.FC = () => {
-  // const navRef = useRef<HTMLElement>(null);
 
-  // const showNavbar = () => {
-  //   if (!navRef.current) {
-  //     return;
-  //   }
-  //   navRef.current.classList.toggle("hideNav");
-  // };
   const navigate=useNavigate();
   async function logout() {
     localStorage.removeItem("token")
