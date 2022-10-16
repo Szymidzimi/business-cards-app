@@ -31,7 +31,7 @@ const Sign: React.FC = () => {
       const data =await response.json()
       if(data && data.token){
       localStorage.setItem("token", data.token)};
-      navigate("/sign");
+      navigate("/");
       setErrorMessage(data.message);
       console.log(data.message);
     } catch (error:any) {
@@ -40,15 +40,15 @@ const Sign: React.FC = () => {
     }
   }
   useEffect(() => {
-    // fetch("/isUserAuth", {
-    //   headers: {
-    //     "x-access-token": localStorage.getItem("token") || "",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => (data.isLoggedIn ? navigate("/sign") : null))
-    //   .catch(err => setErrorMessage(err)) 
-    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetch("/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token") || "",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? navigate("/") : null))
+      .catch(err => setErrorMessage(err)) 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

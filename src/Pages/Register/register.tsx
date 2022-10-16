@@ -39,15 +39,15 @@ const Register: React.FC = () => {
    
   }
   useEffect(() => {
-    // fetch("/isUserAuth", {
-    //   headers: {
-    //     "x-access-token": localStorage.getItem("token") || "",
-    //   },
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => (data.isLoggedIn ? navigate("/") : null))
-    //   .catch(err => setErrorMessage(err)) 
-    //   // eslint-disable-next-line react-hooks/exhaustive-deps
+    fetch("/isUserAuth", {
+      headers: {
+        "x-access-token": localStorage.getItem("token") || "",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => (data.isLoggedIn ? navigate("/") : null))
+      .catch(err => setErrorMessage(err)) 
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

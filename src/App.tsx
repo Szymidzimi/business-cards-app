@@ -1,5 +1,4 @@
 import Nav from "./Components/navBar/navbar";
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/home";
@@ -9,12 +8,10 @@ import Sign from "./Pages/Sign/sign";
 import Register from "./Pages/Register/register";
 import NotFound from "./Pages/NotFound/notFound";
 import SingleEnterprise from "./Pages/SingleEnterprise/singleEnterprise";
-// import AuthWrapper from "./Pages/AuthWrapper/authWrapper";
 
 
 function App() {
   return (
-    // <AuthWrapper>
     <>
       <Nav />
       <Routes>
@@ -26,8 +23,7 @@ function App() {
         <Route path="/singleEnterprise/:name" element={<SingleEnterprise />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      </>
-    // </AuthWrapper>
+    </>
   );
 }
 
