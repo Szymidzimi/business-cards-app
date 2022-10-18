@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Map from "../../Components/map/map"
+import Slider from "../../Components/slider/slider";
 import "./singleEnterprise.css";
+
+export type imagesType={
+  public_id:string;
+  url:string;
+}
 
 export type enterprise = {
   _id: number;
@@ -14,12 +20,13 @@ export type enterprise = {
   description: string;
   rating: number;
   typeOfEnterprises: string;
-  logoEnterprise: string;
+  logoEnterprise: Object;
   voivodeship:string;
   zipCode:string;
   webside:string;
   latitude:number;
   longitude:number;
+  imagesEnterprise:imagesType[]
 };
 
 const SingleEnterprise = () => {
@@ -78,7 +85,9 @@ const SingleEnterprise = () => {
             </div>
           </div>
         </div>
-        <div className="album-photo">fotki</div>
+        <div className="album-photo">
+             {singleEnterprise&&<Slider enterprise={singleEnterprise}/>}
+        </div>
         <div className="map-section">      
           {singleEnterprise&&<Map enterprise={singleEnterprise}/>}
       </div>

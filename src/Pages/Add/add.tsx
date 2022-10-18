@@ -15,6 +15,7 @@ const Add: React.FC = () => {
   const deleteHandler=(image:any) => {
     setEnterpriseImages(enterpriseImages.filter((e:any) => e !== image));
     URL.revokeObjectURL(image);
+    // ref.current.value=enterpriseImages;
   }
 
   const options = [
@@ -214,8 +215,14 @@ const Add: React.FC = () => {
             placeholder="Enter your NIP..."
           />
           <label>Images</label>
-          <input
-            className="add-input-logo"
+
+
+            <div className="upload-image">
+                <label htmlFor="images">Upload</label>
+            </div>
+            <input
+            id="images"
+            className="add-input-images"
             type="file"
             accept=".png, .jpg, .jpeg"
             onChange={handleEnterprisesImagesUpload}
@@ -223,6 +230,7 @@ const Add: React.FC = () => {
             multiple
             ref={ref}
           />
+
           <button type="button" className="delete-button" onClick={resetInput}>
             reset
           </button>

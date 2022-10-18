@@ -46,8 +46,10 @@
     margin-top: 1.5rem auto;
     font-size: 14px;
   }
-  
-  .add-button{
+  .add-input-images{
+    display: none;
+  }
+  .add-button, .upload-image{
     margin: 0 auto;
     padding: 17px 30px;
     border-radius: 10px;
