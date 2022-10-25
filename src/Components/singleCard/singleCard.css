@@ -15,6 +15,12 @@
   width: 30em;
   margin-left: 0;
 }
+.logo-card img{
+
+    max-height: 90%;
+    max-width: 80%;
+    object-fit:contain;
+}
 .title-card{
   font-size: 2em;
   text-align: right;
