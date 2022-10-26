@@ -31,6 +31,7 @@ export type enterprise = {
 
 const SingleEnterprise = () => {
   let { name } = useParams();
+
   const [singleEnterprise, setSingleEnterprises] = useState<enterprise | null>(
     null
   );
