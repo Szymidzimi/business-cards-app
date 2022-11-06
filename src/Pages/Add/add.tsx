@@ -2,21 +2,21 @@ import "./add.css";
 import { useNavigate } from "react-router";
 import { useEffect, useRef, useState } from "react";
 import AuthLayout from "../../Layout/authLayout";
+import MapFromAdd from "../../Components/mapFromAdd/mapFromAdd";
+import { validateNotEmptyInput, validateNotEmptyNumber } from "../../Components/inputComponent/validation";
 
 const Add: React.FC = () => {
-
-
   const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
 
   const resetInput = () => {
-    ref.current.value="";
+    ref.current.value = "";
   };
 
-  const deleteHandler=(image:any) => {
-    setEnterpriseImages(enterpriseImages.filter((e:any) => e !== image));
+  const deleteHandler = (image: any) => {
+    setEnterpriseImages(enterpriseImages.filter((e: any) => e !== image));
     URL.revokeObjectURL(image);
     // ref.current.value=enterpriseImages;
-  }
+  };
 
   const options = [
     { value: "Dolnośląskie", text: "Dolnośląskie" },
@@ -50,9 +50,30 @@ const Add: React.FC = () => {
   const [enterpriseDescription, setEnterpriseDescription] =
     useState<string>("");
   const [enterpriseNip, setEnterpriseNip] = useState("");
-  const [enterpriseLogo, setEnterpriseLogo] = useState<any|null>();
+  const [enterpriseLogo, setEnterpriseLogo] = useState<any | null>();
   const [enterpriseImages, setEnterpriseImages] = useState<any | []>([]);
+  const [enterpriseLat, setEnterpriseLat] = useState<number>(0);
+  const [enterpriseLng, setEnterpriseLng] = useState<number>(0);
   const [loading, setLoading] = useState(false);
+  const [dataFromMap, setDataFromMap] = useState<any | null>(null);
+
+  if (dataFromMap) {
+    const dataFormLabels = dataFromMap.label.split(", ");
+    if (dataFormLabels[dataFormLabels.length - 1] === "Polska") {
+      setEnterpriseCity(dataFormLabels[0]);
+      console.log(dataFormLabels);
+      if (dataFormLabels.length === 6) {
+        setEnterpriseLat(dataFromMap.x);
+        setEnterpriseLng(dataFromMap.y);
+        setEnterpriseStreet(dataFromMap.street);
+        setEnterpriseZipCode(dataFormLabels[4]);
+        console.log(enterpriseZipCode);
+      }
+      setDataFromMap(null);
+    }
+  }
+
+  console.log("dupa", dataFromMap);
 
   const handleEnterprisesImagesUpload = (e: any) => {
     const files = Array.from(e.target.files);
@@ -63,22 +84,32 @@ const Add: React.FC = () => {
         setEnterpriseImages((tmp: any) => [...tmp, reader.result]);
       };
     });
-  }
-    const handleLogoUpload = (e: any) => {
-      const file = e.target.files[0];
+  };
+  const handleLogoUpload = (e: any) => {
+    const file = e.target.files[0];
 
-      const reader = new FileReader();
+    const reader = new FileReader();
 
-      if (file) {
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          setEnterpriseLogo(reader.result);
-        };
-      } else {
-        setEnterpriseLogo("");
-      }
-    };
+    if (file) {
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setEnterpriseLogo(reader.result);
+      };
+    } else {
+      setEnterpriseLogo("");
+    }
+  };
 
+  // const [lat,setLat]=useState<number>()
+  // const [lon,setLon]=useState<number>()
+
+  // useEffect(()=>{
+  //     navigator.geolocation.getCurrentPosition((postion)=>{
+  //         setLat(postion.coords.latitude)
+  //         setLon(postion.coords.longitude)
+  //     })
+  // })
+  // console.log(lat,lon);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -97,23 +128,28 @@ const Add: React.FC = () => {
       description: enterpriseDescription,
       logoEnterprise: enterpriseLogo,
       imagesEnterprise: enterpriseImages,
+      lat: enterpriseLat,
+      lng: enterpriseLng,
     };
 
-    try {
-      const response = await fetch("/enterprises/insertEnterprise", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify(entrprise),
-      });
-      setLoading(false);
-      const data = await response.json();
-      navigate("/search");
-      console.log(data.message);
-    } catch (error: any) {
-      console.log(error);
-    }
+
+      try {
+        const response = await fetch("/enterprises/insertEnterprise", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify(entrprise),
+        });
+        setLoading(false);
+
+        const data = await response.json();
+        navigate("/search");
+        console.log(data.message);
+      } catch (error: any) {
+        console.log(error);
+      }
+    
   };
 
   return (
@@ -144,10 +180,14 @@ const Add: React.FC = () => {
               <p>Logo image upload preview will appear here!</p>
             )}
           </div>
+          <div className="map-section">
+            <MapFromAdd setDataFromMap={setDataFromMap} />
+          </div>
           <label>City</label>
           <input
             className="add-input"
             type="text"
+            value={enterpriseCity}
             onChange={(e) => setEnterpriseCity(e.target.value)}
             placeholder="Enter your City..."
           />
@@ -169,6 +209,7 @@ const Add: React.FC = () => {
           <input
             className="add-input"
             type="text"
+            value={enterpriseZipCode}
             onChange={(e) => setEnterpriseZipCode(e.target.value)}
             placeholder="Enter your Code..."
           />
@@ -216,11 +257,10 @@ const Add: React.FC = () => {
           />
           <label>Images</label>
 
-
-            <div className="upload-image">
-                <label htmlFor="images">Upload</label>
-            </div>
-            <input
+          <div className="upload-image">
+            <label htmlFor="images">Upload</label>
+          </div>
+          <input
             id="images"
             className="add-input-images"
             type="file"
@@ -237,11 +277,13 @@ const Add: React.FC = () => {
 
           <div className="images">
             {enterpriseImages &&
-              enterpriseImages.map((image:any, index:number) => {
+              enterpriseImages.map((image: any, index: number) => {
                 return (
                   <div key={image} className="image">
                     <img src={image} height="200" alt="upload" />
-                    <button type="button" onClick={() => deleteHandler(image)}>delete image</button>
+                    <button type="button" onClick={() => deleteHandler(image)}>
+                      delete image
+                    </button>
                   </div>
                 );
               })}

@@ -2,6 +2,10 @@
 export const validateNotEmptyInput = (input: string) => {   
   return input.length > 0 && validateSqlInjection(input);
 }
+//validate number state not empty
+export const validateNotEmptyNumber = (input: number) => {
+    return input > 0;
+}
 //validate login not empty without special characters   
 export const validateLogin = (login: string) => {
   const loginRegex = /^[a-zA-Z0-9]{3,}$/;
@@ -39,4 +43,35 @@ export const validatePhone = (phone: string) => {
 export const validateWebsite = (website: string) => {
     const websiteRegex = /^https?:\/\/\S+\.\S+$/;
     return websiteRegex.test(website);
+}
+//Determining images files resolution without promise
+export const validateImagesResolution = (files: File[]) => {
+    let result = true;
+    files.forEach((file) => {
+        const img = new Image();
+        img.src = URL.createObjectURL(file);
+        img.onload = () => {
+            const width = img.naturalWidth;
+            const height = img.naturalHeight;
+            URL.revokeObjectURL(img.src);
+            if (width >= 100 && height >= 100 && width <= 1000 && height <= 1000) {
+                result = true;
+            } else {
+                result = false;
+            }
+        };
+    });
+    return result;
+}
+
+//Determining image file size
+export const validateMaxWeightFiles = (files: File[]) => {
+    const maxWeight = 5;
+    let valid = true;
+    files.forEach((file) => {
+        if (file.size / 1024 / 1024 > maxWeight) {
+            valid = false;
+        }
+    });
+    return valid;
 }
