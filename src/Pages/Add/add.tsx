@@ -1,16 +1,16 @@
 import "./add.css";
 import { useNavigate } from "react-router";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import AuthLayout from "../../Layout/authLayout";
 import MapFromAdd from "../../Components/mapFromAdd/mapFromAdd";
-import { validateNotEmptyInput, validateNotEmptyNumber } from "../../Components/inputComponent/validation";
-
+import { validateEmail, validateNotEmptyInput, validateNotEmptyInputWithSpaces, validateNotEmptyNumber, validatePhone, validateZipCode } from "../../Components/inputComponent/validation";
+import { FiUpload } from "react-icons/fi";
 const Add: React.FC = () => {
   const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
 
-  const resetInput = () => {
-    ref.current.value = "";
-  };
+  // const resetInput = () => {
+  //   ref.current.value = "";
+  // };
 
   const deleteHandler = (image: any) => {
     setEnterpriseImages(enterpriseImages.filter((e: any) => e !== image));
@@ -44,7 +44,7 @@ const Add: React.FC = () => {
   const [enterpriseNumber, setEnterpriseNumber] = useState("");
   const [enterpriseZipCode, setEnterpriseZipCode] = useState<string>("");
   const [enterprisePhone, setEnterprisePhone] = useState("");
-  const [enterpriseemail, setEnterpriseEmail] = useState<string>("");
+  const [enterpriseEmail, setEnterpriseEmail] = useState<string>("");
   const [enterpriseVoivodeship, setEnterpriseVoivodeship] =
     useState<string>("");
   const [enterpriseDescription, setEnterpriseDescription] =
@@ -57,34 +57,173 @@ const Add: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [dataFromMap, setDataFromMap] = useState<any | null>(null);
 
+  const [enterpriseNameError, setEnterpriseNameError] = useState<string>("");
+  const [enterpriseCityError, setEnterpriseCityError] = useState<string>("");
+  const [enterpriseStreetError, setEnterpriseStreetError] =
+
+    useState<string>("");
+  const [enterpriseNumberError, setEnterpriseNumberError] =
+    useState<string>("");
+  const [enterpriseZipCodeError, setEnterpriseZipCodeError] =
+    useState<string>("");
+  const [enterprisePhoneError, setEnterprisePhoneError] =
+    useState<string>("");
+  const [enterpriseEmailError, setEnterpriseEmailError] =
+    useState<string>("");
+  const [enterpriseVoivodeshipError, setEnterpriseVoivodeshipError] =
+    useState<string>("");
+  const [enterpriseDescriptionError, setEnterpriseDescriptionError] =
+    useState<string>("");
+  const [enterpriseNipError, setEnterpriseNipError] = useState<string>("");
+  const [enterpriseLogoError, setEnterpriseLogoError] = useState<string>("");
+  const [enterpriseImagesError, setEnterpriseImagesError] = useState<string>("");
+  const [enterpriseLatError, setEnterpriseLatError] = useState<string>("");
+  const [enterpriseLngError, setEnterpriseLngError] = useState<string>("");
+
+  const validateInputs = (enterprise:{
+   
+      name: string,
+      city:  string,
+      street:  string,
+      number:  string,
+      zipCode:  string,
+      voivodeship:  string,
+      numberPhone:  string,
+      email:  string,
+      nip:  string,
+      description:  string,
+      logoEnterprise:  string,
+      imagesEnterprise:  string,
+      lat: number,
+      lng: number,
+  }) => {
+    let isValid = true;
+    if (validateNotEmptyInputWithSpaces(enterprise.name)) {
+      console.log(enterprise.name);
+      setEnterpriseNameError("Pole nie może być puste");
+      isValid = false;
+    } else {
+      setEnterpriseNameError("");
+    }
+    if (!validateNotEmptyInput(enterprise.city)) {
+      setEnterpriseCityError("Pole nie może być puste");
+      isValid = false;
+    } else {
+      setEnterpriseCityError("");
+    }
+    if (validateNotEmptyInputWithSpaces(enterprise.street)) {
+      setEnterpriseStreetError("Pole nie może być puste");
+      isValid = false;
+    } else {
+      setEnterpriseStreetError("");
+    }
+    if (!validateNotEmptyInput(enterprise.number)) {
+      setEnterpriseNumberError("Pole nie może być puste");
+      isValid = false;
+    } else {
+      setEnterpriseNumberError("");
+    }
+    if (!validateZipCode(enterprise.zipCode)) {
+      setEnterpriseZipCodeError("Niepoprawny kod pocztowy");
+      isValid = false;
+    } else {
+      setEnterpriseZipCodeError("");
+    }
+    if (!validatePhone(enterprise.numberPhone)) {
+      console.log((!validatePhone(enterprise.numberPhone)));
+      setEnterprisePhoneError("Niepoprawny numer telefonu");
+      isValid = false;
+    } else {
+      setEnterprisePhoneError("");
+    }
+    if (!validateEmail(enterprise.email)) {
+      setEnterpriseEmailError("Niepoprawny adres email");
+      isValid = false;
+    } else {
+      setEnterpriseEmailError("");
+    }
+    if (!validateNotEmptyInput(enterprise.voivodeship)) {
+      setEnterpriseVoivodeshipError("Pole nie może być puste");
+      isValid = false;
+    } else {
+      setEnterpriseVoivodeshipError("");
+    }
+    if (validateNotEmptyInputWithSpaces(enterprise.description)) {
+      setEnterpriseDescriptionError("Pole nie może być puste");
+      isValid = false;
+    } else {
+      setEnterpriseDescriptionError("");
+    }
+    if (!validateNotEmptyInput(enterprise.nip)) {
+      setEnterpriseNipError("Pole nie może być puste");
+
+      isValid = false;
+    } else {
+      setEnterpriseNipError("");
+    }
+    // if (!validateNotEmptyInput(enterprise.logoEnterprise)) {
+    //   setEnterpriseLogoError("Pole nie może być puste");
+    //   isValid = false;
+    // } else {
+    //   setEnterpriseLogoError("");
+    // }
+    // if (!validateNotEmptyInput(enterprise.imagesEnterprise)) {
+    //   setEnterpriseImagesError("Pole nie może być puste");
+    //   isValid = false;
+    // } else {
+    //   setEnterpriseImagesError("");
+    // }
+    if (!validateNotEmptyNumber(enterprise.lat)) {
+      console.log(enterprise.lat);
+      setEnterpriseLatError("Musisz znależć miejsce na mapie");
+      isValid = false;
+    } else {
+      setEnterpriseLatError("");
+    }
+    if (!validateNotEmptyNumber(enterprise.lng)) {
+
+      setEnterpriseLngError("Musisz znależć miejsce na mapie");
+      isValid = false;
+    } else {
+      setEnterpriseLngError("");
+    }
+    return isValid;
+  };
+
+
   if (dataFromMap) {
     const dataFormLabels = dataFromMap.label.split(", ");
     if (dataFormLabels[dataFormLabels.length - 1] === "Polska") {
       setEnterpriseCity(dataFormLabels[0]);
-      console.log(dataFormLabels);
+      setEnterpriseLat(dataFromMap.x);
+      setEnterpriseLng(dataFromMap.y);
       if (dataFormLabels.length === 6) {
-        setEnterpriseLat(dataFromMap.x);
-        setEnterpriseLng(dataFromMap.y);
-        setEnterpriseStreet(dataFromMap.street);
         setEnterpriseZipCode(dataFormLabels[4]);
-        console.log(enterpriseZipCode);
       }
       setDataFromMap(null);
     }
   }
 
-  console.log("dupa", dataFromMap);
-
   const handleEnterprisesImagesUpload = (e: any) => {
     const files = Array.from(e.target.files);
-    files.forEach((file: any) => {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setEnterpriseImages((tmp: any) => [...tmp, reader.result]);
-      };
-    });
+    if (files.length > 5) {
+      setEnterpriseImagesError("Możesz dodać maksymalnie 3 zdjęcia");
+    } else {
+      files.forEach((file: any) => {
+        if (file.size / 1024 / 1024 > 2) {
+          setEnterpriseImagesError("Maksymalny rozmiar zdjęcia to 2MB");
+        } else {
+          setEnterpriseImagesError("");
+          const reader = new FileReader();
+          reader.readAsDataURL(file);
+          reader.onloadend = () => {
+            setEnterpriseImages((tmp: any) => [...tmp, reader.result]);
+          };
+        }
+      });
+    }
   };
+
   const handleLogoUpload = (e: any) => {
     const file = e.target.files[0];
 
@@ -113,9 +252,8 @@ const Add: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
 
-    const entrprise = {
+    const enterprise = {
       name: enterpriseName,
       city: enterpriseCity,
       street: enterpriseStreet,
@@ -123,7 +261,7 @@ const Add: React.FC = () => {
       zipCode: enterpriseZipCode,
       voivodeship: enterpriseVoivodeship,
       numberPhone: enterprisePhone,
-      email: enterpriseemail,
+      email: enterpriseEmail,
       nip: enterpriseNip,
       description: enterpriseDescription,
       logoEnterprise: enterpriseLogo,
@@ -132,6 +270,8 @@ const Add: React.FC = () => {
       lng: enterpriseLng,
     };
 
+    if(validateInputs(enterprise)){
+      setLoading(true);
 
       try {
         const response = await fetch("/enterprises/insertEnterprise", {
@@ -139,7 +279,7 @@ const Add: React.FC = () => {
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify(entrprise),
+          body: JSON.stringify(enterprise),
         });
         setLoading(false);
 
@@ -149,7 +289,7 @@ const Add: React.FC = () => {
       } catch (error: any) {
         console.log(error);
       }
-    
+    }
   };
 
   return (
@@ -164,25 +304,30 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseName(e.target.value)}
             placeholder="Enter your Name..."
           />
+          <span className="add-error">{enterpriseNameError}</span>
           <label>Logo</label>
+
+            <label className="upload-image" htmlFor="logo"><FiUpload/></label>
+
           <input
+            id="logo"
             className="add-input-logo"
             type="file"
             accept=".png, .jpg, .jpeg"
             onChange={handleLogoUpload}
           />
-          <div>
-            {enterpriseLogo ? (
+          <span className="add-error">{enterpriseLogoError}</span>
+          <div className="previewLogo">
+            {enterpriseLogo && (
               <>
                 <img src={enterpriseLogo} alt="error!" />
               </>
-            ) : (
-              <p>Logo image upload preview will appear here!</p>
             )}
           </div>
           <div className="map-section">
             <MapFromAdd setDataFromMap={setDataFromMap} />
           </div>
+          <span className="add-error">{enterpriseLatError}</span>
           <label>City</label>
           <input
             className="add-input"
@@ -191,6 +336,7 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseCity(e.target.value)}
             placeholder="Enter your City..."
           />
+          <span className="add-error">{enterpriseCityError}</span>
           <label>Street</label>
           <input
             className="add-input"
@@ -198,6 +344,7 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseStreet(e.target.value)}
             placeholder="Enter your Street..."
           />
+          <span className="add-error">{enterpriseStreetError}</span>
           <label>Number</label>
           <input
             className="add-input"
@@ -205,6 +352,7 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseNumber(e.target.value)}
             placeholder="Enter your Number..."
           />
+          <span className="add-error">{enterpriseNumberError}</span>
           <label>Zip Code</label>
           <input
             className="add-input"
@@ -213,6 +361,7 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseZipCode(e.target.value)}
             placeholder="Enter your Code..."
           />
+          <span className="add-error">{enterpriseZipCodeError}</span>
           <label>Number of Phone</label>
           <input
             className="add-input"
@@ -220,6 +369,7 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterprisePhone(e.target.value)}
             placeholder="Enter your Phone..."
           />
+          <span className="add-error">{enterprisePhoneError}</span>
           <label>Em@il</label>
           <input
             className="add-input"
@@ -227,8 +377,8 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseEmail(e.target.value)}
             placeholder="Enter your email..."
           />
+          <span className="add-error">{enterpriseEmailError}</span>
           <label>Voivodeship</label>
-
           <select
             className="add-input"
             value={enterpriseVoivodeship}
@@ -240,7 +390,7 @@ const Add: React.FC = () => {
               </option>
             ))}
           </select>
-
+          <span className="add-error">{enterpriseVoivodeshipError}</span>
           <label>Description</label>
           <textarea
             rows={20}
@@ -248,6 +398,7 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseDescription(e.target.value)}
             placeholder="Enter your Description..."
           />
+          <span className="add-error">{enterpriseDescriptionError}</span>
           <label>NIP</label>
           <input
             className="add-input"
@@ -255,11 +406,12 @@ const Add: React.FC = () => {
             onChange={(e) => setEnterpriseNip(e.target.value)}
             placeholder="Enter your NIP..."
           />
+          <span className="add-error">{enterpriseNipError}</span>
           <label>Images</label>
 
-          <div className="upload-image">
-            <label htmlFor="images">Upload</label>
-          </div>
+
+            <label className="upload-image" htmlFor="images"><FiUpload/></label>
+
           <input
             id="images"
             className="add-input-images"
@@ -271,23 +423,26 @@ const Add: React.FC = () => {
             ref={ref}
           />
 
-          <button type="button" className="delete-button" onClick={resetInput}>
-            reset
-          </button>
+          <span className="add-error">{enterpriseImagesError}</span>
 
-          <div className="images">
+          {/* <button type="button" className="delete-button" onClick={resetInput}>
+            reset
+          </button> */}
+
+          <div className="previewImages">
             {enterpriseImages &&
               enterpriseImages.map((image: any, index: number) => {
                 return (
                   <div key={image} className="image">
-                    <img src={image} height="200" alt="upload" />
-                    <button type="button" onClick={() => deleteHandler(image)}>
-                      delete image
+                    <img src={image} alt="upload" />
+                    <button className="delete-button" type="button" onClick={() => deleteHandler(image)}>
+                      X
                     </button>
                   </div>
                 );
               })}
           </div>
+          
           <button className="add-button">
             {loading ? "Loading..." : "Register"}
           </button>
