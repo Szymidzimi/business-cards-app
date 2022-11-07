@@ -17,7 +17,7 @@ const Navbar: React.FC = () => {
   return (
     <header>
     <nav>
-      <h3 className="logo">Logo</h3>
+      <h3 className="logo">AgroHand</h3>
        <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
           <Link to='/'><li className="topListItem">HOME</li></Link>
           <Link to='/search'><li className="topListItem">SEARCH ENTERPRISE</li></Link>

@@ -7,9 +7,11 @@
 }
 header{
   height: 15vh;
+  color: #00FF00;
 }
 a {
   text-decoration: none;
+  margin: auto 0;
 }
 li {
   list-style-type: none;
@@ -22,7 +24,7 @@ nav {
   box-shadow: rgba(50, 50, 93, 0.23) 0px 30px 30px -20px;
 }
 .logo {
-  font-size: 30px;
+  font-size: 40px;
 }
 .nav-links {
   display: flex;
@@ -60,7 +62,7 @@ button {
   margin-right: 0;
   padding: 10px 20px;
   border-radius: 10px;
-  background: #2e7eed;
+  background: #00FF00;
   color: #fff;
   outline: none;
 }
