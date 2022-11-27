@@ -39,6 +39,7 @@ const SingleEnterprise = () => {
     const jsonEnterprise = await fetch(
       `/enterprises/getEnterpriseByName/${name}`
     );
+    window.scroll(0, 0);
 
     const enterprise = await jsonEnterprise.json();
     if (enterprise.length > 0) {

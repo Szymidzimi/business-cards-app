@@ -320,7 +320,7 @@ const Add: React.FC = () => {
           <div className="previewLogo">
             {enterpriseLogo && (
               <>
-                <img src={enterpriseLogo} alt="error!" />
+                <img className="image" src={enterpriseLogo} alt="error!" />
               </>
             )}
           </div>
