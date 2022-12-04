@@ -32,7 +32,7 @@ export const validateEmail = (email: string) => {
 }
 export const validateZipCode = (zipCode: string) => {
     const zipCodeRegex = /^[0-9]{2}-[0-9]{3}/;
-    return zipCodeRegex.test(zipCode) && validateSqlInjection(zipCode) && validateXss(zipCode);
+    return zipCodeRegex.test(zipCode);
 }
 
 //validate to check input for phone number
