@@ -19,7 +19,7 @@ export type enterprise = {
   email: string;
   description: string;
   rating: number;
-  typeOfEnterprises: string;
+  typeOfEnterprises: [string];
   logoEnterprise: Object;
   voivodeship:string;
   zipCode:string;

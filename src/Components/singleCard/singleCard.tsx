@@ -18,7 +18,7 @@ type Props = {
   email: string;
   description: string;
   rating: number;
-  typeOfEnterprises: string;
+  typeOfEnterprises: [string];
   logoEnterprise:{
     public_id:string;
     url:string;
