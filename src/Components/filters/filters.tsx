@@ -69,98 +69,98 @@ const Filters = ({ fetchEnterprises,fetchEnterprisesByType }: Props) => {
         <button 
         className={filter === "agriculturalMachinery" ? "filter-button-active" : "filter-button"}
           title="Maszyny rolnicze, Narzędzia rolnicze, Serwis, Części"
-          onClick={() => filterEnterprisesByType("agriculturalMachinery")}
+          onClick={() => filterEnterprisesByType("machinery")}
         >
           <GiFarmTractor />
         </button>
         <button 
         className={filter === "CropProduction" ? "filter-button-active" : "filter-button"}
           title="Produkcja roślinna, Nasiennictwo, Sadownictwo, Nawozy, Uprawa roślin, Środki ochrony roślin"
-          onClick={() => filterEnterprisesByType("CropProduction")}
+          onClick={() => filterEnterprisesByType("crop")}
         >
           <GiWheat />
         </button>
         <button 
         className={filter === "AnimalProduction" ? "filter-button-active" : "filter-button"}
           title="Produkcja zwierzęca, Hodowla zwierząt, Pasze, Leki, Preparaty"
-          onClick={() => filterEnterprisesByType("AnimalProduction")}
+          onClick={() => filterEnterprisesByType("animal")}
         >
           <GiCow />
         </button>
         <button 
         className={filter === "agriculturalConstruction" ? "filter-button-active" : "filter-button"}
           title="Budownictwo rolnicze, Obiekty inwentarskie, Wyposażenie budynków rolniczych"
-          onClick={() => filterEnterprisesByType("agriculturalConstruction")}
+          onClick={() => filterEnterprisesByType("construction")}
         >
           <GiBarn />
         </button>
         <button 
         className={filter === "Gardening" ? "filter-button-active" : "filter-button"}
           title="Ogrodnictwo, Sprzęt ogrodniczy, Wyposażenie ogrodów, Kwiaty, Aranżacja"
-          onClick={() => filterEnterprisesByType("Gardening")}
+          onClick={() => filterEnterprisesByType("garden")}
         >
           <GiFlowerPot />
         </button>
         <button 
         className={filter === "agriculture" ? "filter-button-active" : "filter-button"}
           title="Gospodarstwa rolne"
-          onClick={() => filterEnterprisesByType("agriculture")}
+          onClick={() => filterEnterprisesByType("farms")}
         >
           <GiFarmer />
         </button>
         <button
         className={filter === "Waste" ? "filter-button-active" : "filter-button"}
           title="Odpady, Czystość, Higiena , Recycling, Opakowania, Folie"
-          onClick={() => filterEnterprisesByType("Waste")}
+          onClick={() => filterEnterprisesByType("waste")}
         >
           <GiVacuumCleaner />
         </button>
         <button
         className={filter === "Wood" ? "filter-button-active" : "filter-button"}
           title="Drewno, Leśnictwo, Grzyby, Pieczarkarnie"
-          onClick={() => filterEnterprisesByType("Wood")}
+          onClick={() => filterEnterprisesByType("wood")}
         >
           <GiWoodBeam />
         </button>
         <button
         className={filter === "RenewableEnergy" ? "filter-button-active" : "filter-button"}
           title="Energia odnawialna, Biopaliwa, Środowisko, Ekologia, Bio, Lab, Badania"
-          onClick={() => filterEnterprisesByType("RenewableEnergy")}
+          onClick={() => filterEnterprisesByType("renewableEnergy")}
         >
           <GiEcology />
         </button>
         <button
         className={filter === "EcoFood" ? "filter-button-active" : "filter-button"}
           title="Żywnośc ekologiczna"
-          onClick={() => filterEnterprisesByType("EcoFood")}
+          onClick={() => filterEnterprisesByType("ecoFood")}
         >
           <GiFruitBowl />
         </button>
         <button
         className={filter === "Agritourism" ? "filter-button-active" : "filter-button"}
           title="Agroturystyka"
-          onClick={() => filterEnterprisesByType("Agritourism")}
+          onClick={() => filterEnterprisesByType("agritourism")}
         >
           <BiHotel />
         </button>
         <button
         className={filter === "AgriculturalConsulting" ? "filter-button-active" : "filter-button"}
           title="Doradztwo rolnicze, Dotacje dla rolników, Dopłaty dla rolników, Szkolenia, Agencje"
-          onClick={() => filterEnterprisesByType("AgriculturalConsulting")}
+          onClick={() => filterEnterprisesByType("consulting")}
         >
           <HiDocument />
         </button>
         <button
         className={filter === "AgriculturalOrganizations" ? "filter-button-active" : "filter-button"}
           title="Organizacje rolnicze, zrzeszenia rolników, instytuty; szkolnictwo rolnicze"
-          onClick={() => filterEnterprisesByType("AgriculturalOrganizations")}
+          onClick={() => filterEnterprisesByType("organizations")}
         >
           <GoOrganization />
         </button>
         <button
         className={filter === "Other" ? "filter-button-active" : "filter-button"}
           title="Inne usługi dla rolnictwa, Hurtownie, Handel rolniczy"
-          onClick={() => filterEnterprisesByType("Other")}
+          onClick={() => filterEnterprisesByType("other")}
         >
           <BiDotsHorizontalRounded />
         </button>
