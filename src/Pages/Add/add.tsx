@@ -1,16 +1,41 @@
 import "./add.css";
 import { useNavigate } from "react-router";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import AuthLayout from "../../Layout/authLayout";
 import MapFromAdd from "../../Components/mapFromAdd/mapFromAdd";
 import { validateEmail, validateNotEmptyInput, validateNotEmptyInputWithSpaces, validateNotEmptyNumber, validatePhone, validateZipCode } from "../../Components/inputComponent/validation";
 import { FiUpload } from "react-icons/fi";
+import { getUserData } from "../../config/decodeUser";
+import Select, { ActionMeta, InputActionMeta, MultiValue } from 'react-select';
+import { CategoryOption, categoryOptions } from "../../config/categoryValue";
+import { enterprise } from "../SingleEnterprise/singleEnterprise";
+
+export type imagesType={
+  public_id:string;
+  url:string;
+}
+
+export type enterpriseType = {
+
+  name: string;
+  city: string;
+  street: string;
+  number: number;
+  numberPhone: number;
+  email: string;
+  description: string;
+  nip: number;
+  typeOfEnterprise:string[];
+  logoEnterprise: Object;
+  voivodeship:string;
+  zipCode:string;
+  lat:number;
+  lng:number;
+  imagesEnterprise:imagesType[]
+};
+
 const Add: React.FC = () => {
   const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
-
-  // const resetInput = () => {
-  //   ref.current.value = "";
-  // };
 
   const deleteHandler = (image: any) => {
     setEnterpriseImages(enterpriseImages.filter((e: any) => e !== image));
@@ -37,19 +62,20 @@ const Add: React.FC = () => {
     { value: "Zachodnio-Pomorskie", text: "Zachodnio-Pomorskie" },
   ];
 
-  const [enterprise, setEnterprise] = useState({
+  const [enterprise, setEnterprise] = useState<enterpriseType>({
     name: "",
     city:  "",
-    street:  "string",
-    number:  "string",
-    zipCode:  "string",
-    voivodeship:  "string",
-    numberPhone:  "string",
-    email:  "string",
-    nip:  "string",
-    description:  "string",
-    logoEnterprise:  "string",
-    imagesEnterprise:  "string",
+    street:  "",
+    number:  0,
+    zipCode:  "",
+    voivodeship:  "",
+    numberPhone:  0,
+    email:  "",
+    nip: 0,
+    typeOfEnterprise:[],
+    description:  "",
+    logoEnterprise:  "",
+    imagesEnterprise:[],
     lat: 0,
     lng: 0,
   });
@@ -84,24 +110,10 @@ const Add: React.FC = () => {
   const [enterpriseLogoError, setEnterpriseLogoError] = useState<string>("");
   const [enterpriseImagesError, setEnterpriseImagesError] = useState<string>("");
   const [enterpriseLatLngError, setEnterpriseLatLngError] = useState<string>("");
+  const [menuIsOpen, setMenuIsOpen] = useState<boolean>();
+   const [typeOfEnterprises, setTypeOfEnterprises] = useState<any>();
 
-  const validateInputs = (enterprise:{
-   
-      name: string,
-      city:  string,
-      street:  string,
-      number:  string,
-      zipCode:  string,
-      voivodeship:  string,
-      numberPhone:  string,
-      email:  string,
-      nip:  string,
-      description:  string,
-      logoEnterprise:  string,
-      imagesEnterprise:  string,
-      lat: number,
-      lng: number,
-  }) => {
+  const validateInputs = (enterprise:enterpriseType) => {
     let isValid = true;
     if (validateNotEmptyInputWithSpaces(enterprise.name)) {
       console.log(enterprise.name);
@@ -122,7 +134,7 @@ const Add: React.FC = () => {
     } else {
       setEnterpriseStreetError("");
     }
-    if (!validateNotEmptyInput(enterprise.number)) {
+    if (!validateNotEmptyNumber(enterprise.number)) {
       setEnterpriseNumberError("Pole nie może być puste");
       isValid = false;
     } else {
@@ -159,7 +171,7 @@ const Add: React.FC = () => {
     } else {
       setEnterpriseDescriptionError("");
     }
-    if (!validateNotEmptyInput(enterprise.nip)) {
+    if (!validateNotEmptyNumber(enterprise.nip)) {
       setEnterpriseNipError("Pole nie może być puste");
 
       isValid = false;
@@ -252,6 +264,16 @@ const Add: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLSelectElement>|React.ChangeEvent<HTMLTextAreaElement>) => 
   setEnterprise(prevState => ({...prevState, [e.target.name]: e.target.value}))
 
+  const updateTypeOfEnterpriseData = (
+    typeOfEnterprise: MultiValue<{ value: string; label: string }>
+  ) => {
+    let typeOfEnterpriseClean: string[] = typeOfEnterprise.map(
+      (toe) => toe.value
+    );
+    setEnterprise({ ...enterprise, typeOfEnterprise: typeOfEnterpriseClean });
+  };
+
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -270,11 +292,14 @@ const Add: React.FC = () => {
       imagesEnterprise: enterpriseImages,
       lat: enterpriseLat,
       lng: enterpriseLng,
+      typeOfEnterprise: enterprise.typeOfEnterprise,
     };
+    const userDataToken = getUserData();
 
 
-    if(validateInputs(enterpriseToSend)){
+    if(validateInputs(enterpriseToSend)&& userDataToken){
       setLoading(true);
+  
 
       try {
         const response = await fetch("/enterprises/insertEnterprise", {
@@ -282,7 +307,9 @@ const Add: React.FC = () => {
           headers: {
             "Content-type": "application/json",
           },
-          body: JSON.stringify(enterpriseToSend),
+          // body: JSON.stringify(enterpriseToSend),
+          body: JSON.stringify({...enterpriseToSend, creatorId: userDataToken.id}),
+
         });
         setLoading(false);
 
@@ -294,6 +321,33 @@ const Add: React.FC = () => {
       }
     }
   };
+
+  // const onInputChange = (
+  //   inputValue: string,
+  //   { action, prevInputValue }: InputActionMeta
+  // ) => {
+  //   if (action === "input-change") return inputValue;
+  //   if (action === "menu-close") {
+  //     if (prevInputValue) setMenuIsOpen(true);
+  //     else setMenuIsOpen(undefined);
+  //   }
+  //   // setEnterprise(prevState => ({...prevState, typeOfEnterprises: inputValue}))
+  //   console.log(action);
+  //   // setEnterprise(enterprise, typeOfEnterprises[]: prevInputValue})
+  // };
+  // function handleSelect(data:any) {
+  //   console.log(data);
+  //   setTypeOfEnterprises(data)
+  //   console.log(typeOfEnterprises)
+  // }
+
+//function to handle the change of the select and save data to array enterprise.typeOfEnterprises
+  // const handleSelect = (e: any) => {
+  //   console.log(e)
+  //   setEnterprise(prevState => ({...prevState, typeOfEnterprises: e}))
+  //   console.log(enterprise);
+  // }
+
 
   return (
     <AuthLayout>
@@ -411,6 +465,17 @@ const Add: React.FC = () => {
             onChange={handleChange}
             placeholder="Enter your Description..."
           />
+           <label>Category</label>
+          <Select
+                isMulti
+                isClearable
+                isSearchable
+                onChange={updateTypeOfEnterpriseData }
+                name="typeOfEnterprise"
+                options={categoryOptions}
+                // menuIsOpen={menuIsOpen}
+              />
+
           <span className="add-error">{enterpriseDescriptionError}</span>
           <label>NIP</label>
           <input
