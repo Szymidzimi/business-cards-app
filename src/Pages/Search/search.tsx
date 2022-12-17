@@ -74,6 +74,7 @@ const Search = () => {
     setEnterprises(enterprises);
     console.log(enterprises);
     setSearchResult(enterprises);
+    setCurrentPage(1);
   };
   const fetchEnterprisesByType = async (type: string) => {
     const jsonEnterprises = await fetch(`enterprises/getEnterpriseByType/${type}`);
@@ -81,6 +82,7 @@ const Search = () => {
     setEnterprises(enterprises);
     console.log(enterprises);
     setSearchResult(enterprises);
+    setCurrentPage(1);
   };
 
   const lastPostIndex = currentPage * postsPerPage;

@@ -26,6 +26,9 @@
   text-align: right;
   margin-bottom: 15px;
 }
+.info-card{
+  text-overflow: ellipsis;
+}
 
 .contact-card{
   margin-top: 50px;

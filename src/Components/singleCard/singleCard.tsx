@@ -43,7 +43,7 @@ const SingleCard = ({ enterprise }: Props) => {
               <h3>{enterprise.name}</h3>
             </div>
             <div className="info-card">
-            {enterprise.description}
+            {/* {enterprise.description} */}
             </div>
             <div className="contact-card">Dane kontaktowe: 
             <p>tel:{enterprise.numberPhone}</p><p>Adres:{enterprise.city},{enterprise.street},{enterprise.number}</p></div>

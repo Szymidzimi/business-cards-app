@@ -36,9 +36,9 @@ export const validateZipCode = (zipCode: string) => {
 }
 
 //validate to check input for phone number
-export const validatePhone = (phone: string) => {
+export const validatePhone = (phone: number) => {
     const phoneRegex = /(?<!\w)(\(?(\+|00)?48\)?)?[ -]?\d{3}[ -]?\d{3}[ -]?\d{3}(?!\w)/;
-    return phoneRegex.test(phone) && validateSqlInjection(phone) && validateXss(phone);
+    return phoneRegex.test(phone.toString());
 }
 //validate to check for xss
 export const validateXss = (input: string) => {
