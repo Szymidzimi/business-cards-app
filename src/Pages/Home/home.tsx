@@ -1,12 +1,12 @@
-import FilterPrices from "../../Components/filters/filterPrices";
+import ChartsComponent from "../../Components/charts/charts";
 
 const Home: React.FC = () => {
   return (
 
-      <FilterPrices />
-      
-
-  );
+<>
+      <ChartsComponent/>
+      </>
+  )
 };
 
 export default Home;
