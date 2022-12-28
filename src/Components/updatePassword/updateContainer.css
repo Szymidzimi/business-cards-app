@@ -1,0 +1,61 @@
+.passwords{
+  width: 40vw;
+  padding: 25px 25px 25px 25px;
+  border: 1px solid #cccccc;
+  border-radius: 20px;
+  text-align: center;
+  text-decoration: none;
+  color:black;
+}
+.passwordsForm{
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  justify-content: center;
+}
+.passwordsForm label{
+  margin: 10px 0;
+  font-size: 1.2rem;
+  text-align: left !important;
+}
+.registerButton{
+  margin: 0 auto;
+  padding: 17px 30px;
+  border-radius: 10px;
+  background: #00FF00;
+  color: #fff;
+  outline: none;
+}
+.passwordTitle{
+  font-size: 1.5rem;
+  text-align: center;
+}
+.success{
+  color: green;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.bad{
+  color: red;
+  font-size: 1.2rem;
+  text-align: center;
+}
+@media (max-width: 1024px) {
+  .passwords{
+    padding: 30px;
+    width: 80vw;
+  }
+  .registerButton{
+    margin: 0 auto;
+  }
+
+  .passwordsForm{
+    margin: 10px auto;
+    display: flex;
+    flex-direction: column;
+    width:95%;
+    justify-content: center;
+  }
+  
+}
