@@ -7,8 +7,7 @@ import { validateEmail, validateNotEmptyInput, validateNotEmptyInputWithSpaces, 
 import { FiUpload } from "react-icons/fi";
 import { getUserData } from "../../config/decodeUser";
 import Select, { ActionMeta, InputActionMeta, MultiValue } from 'react-select';
-import { CategoryOption, categoryOptions } from "../../config/categoryValue";
-import { enterprise } from "../SingleEnterprise/singleEnterprise";
+import { categoryOptions } from "../../config/categoryValue";
 
 export type imagesType={
   public_id:string;

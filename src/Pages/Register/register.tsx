@@ -83,6 +83,7 @@ const Register: React.FC = () => {
           <label>Username</label>
           <InputComponent
             type="text"
+            name="username"
             value={username}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUsername(e.target.value)
@@ -97,6 +98,7 @@ const Register: React.FC = () => {
           <label>Email</label>
           <InputComponent
             type="text"
+            name="email"
             value={email}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUserEmail(e.target.value)
@@ -109,6 +111,7 @@ const Register: React.FC = () => {
           <label>Password</label>
           <InputComponent
             type="password"
+            name="password"
             value={password}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUserPassword(e.target.value)

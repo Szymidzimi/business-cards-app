@@ -33,7 +33,7 @@ h2 {
     font-size: 17px;
   }
   .filters-container{
-    width: 90vw;
+    width: 95vw;
     display:flex;
     flex-direction: column;
     flex-basis: 50%;
@@ -41,7 +41,7 @@ h2 {
     border: 1px solid #cccccc;
     border-radius: 20px;
     text-align: center;
-    margin: 10px auto;
+    margin: 10px auto 25px;
     box-shadow: 1px 1px 40px 1px rgb(0 0 0 / 8%);
   }
 
@@ -49,8 +49,16 @@ h2 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
   }
   .width-select{
     width: 50%;
     margin: auto;
+  }
+
+  @media (max-width: 768px) {
+    .width-select{
+      width: 100%;
+
+    }
   }

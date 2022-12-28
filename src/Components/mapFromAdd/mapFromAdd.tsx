@@ -17,6 +17,7 @@ const SearchControl = (props: any) => {
       notFoundMessage: "Sorry, that address could not be found.",
       style: "bar",
       provider: props.provider,
+      // resultFormat: (result: any) => result.label,
       ...props,
     });
     map.addControl(searchControl);
@@ -28,7 +29,18 @@ const SearchControl = (props: any) => {
 };
 
 const MapFromAdd = ({ setDataFromMap }: dataFromMapProps) => {
-  const prov = new OpenStreetMapProvider();
+  const prov = new OpenStreetMapProvider(
+    {
+      params: {
+        countrycodes: "pl",
+        amenity:"village",
+        limit:5,
+               // 'accept-language': 'pl',
+        // addressdetails: 1,
+        type:'administrative'
+      },
+    }
+  );
 
   return (
     <MapContainer center={[ 52.232222, 21.008333]} zoom={7}>
@@ -41,9 +53,12 @@ const MapFromAdd = ({ setDataFromMap }: dataFromMapProps) => {
         showMarker={true}
         showPopup={false}
         popupFormat={({ query, result }: { query: any; result: any }) => {
+          console.log(query, result);
+          console.log(prov);
           setDataFromMap(result);
           return `${result.label}`;
         }}
+
         maxMarkers={3}
         retainZoomLevel={false}
         animateZoom={true}

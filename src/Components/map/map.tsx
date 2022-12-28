@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet'
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import { useState } from "react";
 import Leaflet  from "leaflet";
-import {enterprise} from "../../Pages/SingleEnterprise/singleEnterprise"
+import { enterprise } from "../../config/types";
 
 
 const markerIcon =new Leaflet.Icon({

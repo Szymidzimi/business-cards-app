@@ -41,7 +41,8 @@ const Sign: React.FC = () => {
       if (data && data.token) {
         localStorage.setItem("token", data.token);
         setBadCredentials(false);
-        navigate("/");
+        navigate("/",{ replace: true });
+        // window.location.reload();
       }
       else{
         setBadCredentials(true);
@@ -69,6 +70,7 @@ const Sign: React.FC = () => {
         <label>Username / Email</label>
         <InputComponent
           type="text"
+          name="login"
           value={login}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setLogin(e.target.value)
@@ -79,6 +81,7 @@ const Sign: React.FC = () => {
         <label>Password</label>
         <InputComponent
           type="password"
+          name="password"
           value={password}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPassword(e.target.value)
