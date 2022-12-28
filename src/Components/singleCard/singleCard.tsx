@@ -1,35 +1,13 @@
 import "./singleCard.css";
-import { Link, Route } from "react-router-dom";
-import SingleEnterprise from "../../Pages/SingleEnterprise/singleEnterprise";
+import { Link } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
+import { countRating } from "../../config/countRating";
+import { enterprise } from "../../config/types";
 
-export type imagesType={
-  public_id:string;
-  url:string;
+
+interface Props {
+  enterprise: enterprise;
 }
-
-type Props = {
-  enterprise: {
-    _id: number;
-  name: string;
-  city: string;
-  street: string;
-  number: number;
-  numberPhone: number;
-  email: string;
-  description: string;
-  rating: number;
-  typeOfEnterprises: [string];
-  logoEnterprise:{
-    public_id:string;
-    url:string;
-  };
-  voivodeship:string;
-  zipCode:string;
-  webside:string;
-  };
-};
-
-
 
 const SingleCard = ({ enterprise }: Props) => {
   return (
@@ -43,7 +21,13 @@ const SingleCard = ({ enterprise }: Props) => {
               <h3>{enterprise.name}</h3>
             </div>
             <div className="info-card">
-            {/* {enterprise.description} */}
+            <Rating
+                  iconsCount={6}
+                  initialValue={countRating(enterprise)}
+                  readonly={true}
+                  allowFraction={true}
+                  /* Available Props */
+            />
             </div>
             <div className="contact-card">Dane kontaktowe: 
             <p>tel:{enterprise.numberPhone}</p><p>Adres:{enterprise.city},{enterprise.street},{enterprise.number}</p></div>

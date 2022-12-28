@@ -1,40 +1,35 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
+import Comments from "../../Components/comments/comments";
 import Map from "../../Components/map/map"
 import Slider from "../../Components/slider/slider";
+import { countRating } from "../../config/countRating";
+import { enterprise } from "../../config/types";
 import "./singleEnterprise.css";
 
-export type imagesType={
-  public_id:string;
-  url:string;
-}
-
-export type enterprise = {
-  _id: number;
-  name: string;
-  city: string;
-  street: string;
-  number: number;
-  numberPhone: number;
-  email: string;
-  description: string;
-  rating: number;
-  typeOfEnterprises: [string];
-  logoEnterprise: Object;
-  voivodeship:string;
-  zipCode:string;
-  webside:string;
-  latitude:number;
-  longitude:number;
-  imagesEnterprise:imagesType[]
-};
-
 const SingleEnterprise = () => {
+
   let { name } = useParams();
 
   const [singleEnterprise, setSingleEnterprises] = useState<enterprise | null>(
     null
   );
+
+  // const countRating = () => {
+  //   let sum = 0;
+  //   let count = 0;
+  //   singleEnterprise?.comments.forEach((comment) => {
+  //     if(comment.rating){
+  //         sum += comment.rating;
+  //         count++;
+  //       }
+  //   });
+  //   console.log(sum/count)
+  //   return sum / count;
+  // };
+
+
   const fetchEnterprises = async () => {
     const jsonEnterprise = await fetch(
       `/enterprises/getEnterpriseByName/${name}`
@@ -48,6 +43,7 @@ const SingleEnterprise = () => {
   };
   useEffect(() => {
     fetchEnterprises();
+
   }, []);
 
   return (
@@ -56,6 +52,18 @@ const SingleEnterprise = () => {
         <div className="entrprise-content">
           <div className="entrprise-header">
             <h5 className="entrprise-title">{singleEnterprise?.name}</h5>
+            <div className="ratings-header">
+            <div>{singleEnterprise&&<Rating
+            className="rating-icon"
+                  size={35}
+                  iconsCount={6}
+                  readonly={true}
+                  initialValue={countRating(singleEnterprise)}
+                  allowFraction={true}
+                  /* Available Props */
+            />}
+            </div>
+            </div>
           </div>
           <div className="entrprise-body">
             {/* <!-- Location --> */}
@@ -92,6 +100,11 @@ const SingleEnterprise = () => {
         </div>
         <div className="map-section">      
           {singleEnterprise&&<Map enterprise={singleEnterprise}/>}
+      </div>
+
+      <div className="comment-section">
+      {singleEnterprise && <Comments singleEnterprise={singleEnterprise} setSingleEnterprises={setSingleEnterprises}></Comments>}
+        
       </div>
       </div>
     </>

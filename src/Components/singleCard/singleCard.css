@@ -10,13 +10,13 @@
   text-decoration: none;
   color:black;
   margin-bottom: 20px;
+  box-shadow: 32px 8px 100px -39px rgba(66, 68, 90, 1);
 }
 .logo-card{
   width: 30em;
   margin-left: 0;
 }
 .logo-card img{
-
     max-height: 90%;
     max-width: 80%;
     object-fit:contain;
@@ -30,9 +30,6 @@
   text-overflow: ellipsis;
 }
 
-.contact-card{
-  margin-top: 50px;
-}
 @media (max-width: 1024px) {
   .container-single-card{
     width: 80vw;
