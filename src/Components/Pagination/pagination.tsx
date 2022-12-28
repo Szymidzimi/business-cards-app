@@ -1,5 +1,4 @@
-import React from "react";
-
+import "./pagination.css"
 
 const Pagination = ({
     totalPosts,
@@ -14,7 +13,7 @@ const Pagination = ({
     }
 
     return (
-        <div className='pagination'>
+        <div className="pagination">
             {pages.map((page, index) => {
                 return (
                     <button
