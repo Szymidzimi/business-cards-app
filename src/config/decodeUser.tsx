@@ -11,5 +11,7 @@ export const getUserData = (): TokenUserData | null => {
   };
   export interface TokenUserData {
     id: string;
-    userName: string;
+    username: string;
+    iat: number;
+    exp: number;
   }

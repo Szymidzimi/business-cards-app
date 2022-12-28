@@ -1,13 +1,16 @@
 import "./mainProfile.css";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { enterprise } from "../filters/filters";
 import { useEffect, useState } from "react";
-import { getUserData } from "../../config/decodeUser";
+import { getUserData, TokenUserData } from "../../config/decodeUser";
+import UpdateCotainer from "../updatePassword/updateContainer";
+import { useNavigate } from "react-router-dom";
+import { enterprise } from "../../config/types";
 
 const MainProfile = () => {
+  const navigate=useNavigate();
 
   const [enterprises, setEnterprises] = useState<enterprise[]>([]);
-  
+  const [userDataToken, setUserDataToken] = useState<TokenUserData | null| undefined>();
 
 const fetchEnterpriseByOwnerName = async (nameOwner:string) => {
     const response = await fetch(`/enterprises/getEnterpriseByOwner/${nameOwner}`,
@@ -16,18 +19,42 @@ const fetchEnterpriseByOwnerName = async (nameOwner:string) => {
     const data = await response.json();
     setEnterprises(data);
   };
+  const logoutProfile=()=>{
+    localStorage.removeItem("token")
+    navigate("/");
+    // window.location.reload();
+  }
 
-  
+  // const fetchDeleteUser = async (id: string) => {
+  //   const response = await fetch(`/users/deleteUser/${id}`, {
+  //     method: "DELETE",
+  //   });
+  //   const data = await response.json();
+  //   setEnterprises(data);
+  // };
+
+//     const navigate=useNavigate();
+//     async function logout() {
+//     localStorage.removeItem("token")
+//     navigate("/");
+// }
+
+const fetchDeleteEnterprise = async (id: number) => {
+    const response = await fetch(`/enterprises/deleteEnterprise/${id}/${userDataToken?.id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    setEnterprises(data);
+  };
+
   useEffect(() => {
-    const userDataToken = getUserData();
-    userDataToken && fetchEnterpriseByOwnerName(userDataToken.id);
-    console.log(userDataToken);
-  }, []);
-
+    setUserDataToken(getUserData());
+    userDataToken?.id && fetchEnterpriseByOwnerName(userDataToken.id);
+  }, [userDataToken?.id]);
 
   return (
     <>
-      <div className="main-container-to-enterprise">
+      <div className="main-container-to-profile">
         <div className="container-profile-card">
           <div className="logo-card">
             <img
@@ -37,21 +64,14 @@ const fetchEnterpriseByOwnerName = async (nameOwner:string) => {
           </div>
           <div className="info-section-card">
             <div className="title-card">
-              <h4>Nazwa użytkownika</h4>
+              <h4>{userDataToken?.username}</h4>
             </div>
             <div className="contact-card">
-              <p>Adres mailowy: </p>
-              <p>Data założenia konta: </p>
+              <p>Number of enterprises: {enterprises.length} </p>
             </div>
 
             <div className="buttons-card">
-              <button
-                className="edit-button"
-                title="Edit"
-                // onClick={() => filterEnterprisesByType("CropProduction")}
-              >
-                <AiOutlineEdit />
-              </button>
+            <button className="logoutButton" onClick={logoutProfile}>LOGOUT</button>
               <button
                 className="delete-buttonv2"
                 title="Delete"
@@ -59,9 +79,13 @@ const fetchEnterpriseByOwnerName = async (nameOwner:string) => {
               >
                 <AiOutlineDelete />
               </button>
+              
             </div>
+            {/* <button className="logoutButton" onClick={logoutProfile}>LOGOUT</button> */}
           </div>
         </div>
+
+        <UpdateCotainer userDataToken={userDataToken}></UpdateCotainer>
         <div className="table-section"> 
         {enterprises.map((enterprise) => (  
         <div className="one-line-own"  key={enterprise._id}>
@@ -75,7 +99,7 @@ const fetchEnterpriseByOwnerName = async (nameOwner:string) => {
               <button
                 className="delete-buttonv2"
                 title="Delete"
-                // onClick={() => filterEnterprisesByType("agriculturalMachinery")}
+                onClick={() => fetchDeleteEnterprise(enterprise._id)}
               >
                 <AiOutlineDelete />
               </button></div>
