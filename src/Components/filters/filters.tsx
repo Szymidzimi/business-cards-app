@@ -22,30 +22,6 @@ fetchEnterprises: () => void;
 fetchEnterprisesByType: (type: string) => void;
 };
 
-export type imagesType = {
-  public_id: string;
-  url: string;
-};
-
-export type enterprise = {
-  _id: number;
-  name: string;
-  city: string;
-  street: string;
-  number: number;
-  numberPhone: number;
-  email: string;
-  description: string;
-  rating: number;
-  typeOfEnterprises: [string];
-  logoEnterprise: imagesType;
-  voivodeship: string;
-  zipCode: string;
-  webside: string;
-  latitude: number;
-  longitude: number;
-  imagesEnterprise: imagesType[];
-};
 const Filters = ({ fetchEnterprises,fetchEnterprisesByType }: Props) => {
     const [filter, setFilter] = React.useState("");
   const filterEnterprisesByType = (type: string) => {

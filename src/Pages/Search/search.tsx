@@ -5,31 +5,8 @@ import Pagination from "../../Components/Pagination/pagination";
 import SingleCard from "../../Components/singleCard/singleCard";
 import "./search.css";
 import Select from 'react-select'
+import { enterprise } from "../../config/types";
 
-export type imagesType={
-  public_id:string;
-  url:string;
-}
-
-export type enterprise = {
-  _id: number;
-  name: string;
-  city: string;
-  street: string;
-  number: number;
-  numberPhone: number;
-  email: string;
-  description: string;
-  rating: number;
-  typeOfEnterprises: [string];
-  logoEnterprise: imagesType;
-  voivodeship:string;
-  zipCode:string;
-  webside:string;
-  latitude:number;
-  longitude:number;
-  imagesEnterprise:imagesType[]
-};
 
 const options = [
   { value: 'up', label: 'Sort by rating ascending' },

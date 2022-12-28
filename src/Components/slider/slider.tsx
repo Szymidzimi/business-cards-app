@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { enterprise, imagesType } from "../../Pages/SingleEnterprise/singleEnterprise";
+import { enterprise, imagesType } from "../../config/types";
 import "./slider.css";
 
 const Slider = (props:{enterprise:enterprise}) => {
