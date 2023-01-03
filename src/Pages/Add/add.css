@@ -46,7 +46,7 @@
     margin: 0 auto;
     padding: 17px 30px;
     border-radius: 10px;
-    background: #00FF00;
+    background: #008f00;
     color: #fff;
     outline: none;
   }
@@ -88,12 +88,19 @@
   .image{
     position: relative;
     display: flex;
-    width: 45%;
+    width: 90%;
     height: 200px;
     text-align: center;
     text-decoration: none;
     color:black;
     margin-bottom: 20px;
+  }
+.logo-image{
+  margin: 0!important;
+}
+  .logo-img{
+    width: 100%;
+
   }
   .previewImages img, previewLogo img{
     width: 100%;
@@ -105,6 +112,10 @@
     color: red;
     font-size: 20px;
     margin: 10px auto;
+  }
+  .chart-price{
+    width: 90vw;
+    margin: 0 auto;
   }
 
 

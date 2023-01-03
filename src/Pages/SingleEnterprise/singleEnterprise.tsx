@@ -70,10 +70,10 @@ const SingleEnterprise = () => {
             <div className="block-2">
               <div className="title-section">Dane adresowe:</div>
               <div className="details-section">
-              Adres (ulica): {singleEnterprise?.street} Nr. {singleEnterprise?.number}<br/>
-              Kod Pocztowy: {singleEnterprise?.zipCode} <br/>
-              Miasto: {singleEnterprise?.city} <br/>
-              Województwo: {singleEnterprise?.voivodeship}
+              <span className="detals-helper">Adres (ulica):</span> {singleEnterprise?.street}<span className="detals-helper"> Nr. </span>{singleEnterprise?.number}<br/>
+              <span className="detals-helper">Kod Pocztowy:</span> {singleEnterprise?.zipCode} <br/>
+              <span className="detals-helper">Miasto:</span> {singleEnterprise?.city} <br/>
+              <span className="detals-helper">Województwo: </span>{singleEnterprise?.voivodeship}
            
               </div>
             </div>
@@ -81,16 +81,18 @@ const SingleEnterprise = () => {
             <div className="block-2">
               <div className="title-section">Dane kontaktowe:</div>
               <div className="details-section">
-              Tel: {singleEnterprise?.numberPhone} <br/>
-              Email: {singleEnterprise?.email} <br/>
-              Strona <a href="{singleEnterprise?.webside}">{singleEnterprise?.webside}</a><br/>
+              <span className="detals-helper">Tel:</span> {singleEnterprise?.numberPhone} <br/>
+              <span className="detals-helper">Email:</span> {singleEnterprise?.email} <br/>
+              <span className="detals-helper">Strona</span> <a href="{singleEnterprise?.webside}">{singleEnterprise?.webside}</a><br/>
               </div>
             </div>
             {/* <!-- About --> */}
             <div className="block-2">
               <div className="title-section">Opis Firmy:</div>
               <div className="details-section">
+                <div className="description-section">
                 {singleEnterprise?.description}
+                </div>
               </div>
             </div>
           </div>

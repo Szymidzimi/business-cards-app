@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthLayout = (props: { children: JSX.Element }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [displayPage, setDisplayPage] = useState<boolean>(false);
+  const navigate=useNavigate();
+
   useEffect(() => {
     fetch("/isUserAuth", {
       headers: {
@@ -11,9 +14,16 @@ const AuthLayout = (props: { children: JSX.Element }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        data.isLoggedIn ? setDisplayPage(true) : setDisplayPage(false);
+        if (data.isLoggedIn) {
+          setDisplayPage(true);
+        }else{
+          setDisplayPage(false);
+          localStorage.removeItem("token")
+          navigate("/sign");
+        }
         setIsLoading(false);
       });
+
   }, []);
 
   return (

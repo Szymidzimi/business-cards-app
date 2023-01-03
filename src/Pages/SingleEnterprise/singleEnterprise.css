@@ -36,6 +36,7 @@
 }
 
 .map-section{
+  position: relative;
   border: 1px solid #cccccc;
   height: 50vh;
   border-radius: 20px;
@@ -103,6 +104,13 @@
     line-height: 25px;
     color: #808080;
     margin-bottom: 0;
+}
+.detals-helper{
+  color: black;
+  font-weight: normal;
+}
+.description-section{
+  margin-top: 20px;
 }
 .react-simple-star-rating{
     size:2rem;

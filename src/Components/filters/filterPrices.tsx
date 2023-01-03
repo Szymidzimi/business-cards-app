@@ -16,13 +16,13 @@ type SelectOptionType = {
 const FilterPrices = ({setCereal, fetchDatasCereal }:Props) => {
 
 const options = [
-    { value: 'ORGBRAS', label: 'Barley' },
-    { value: 'DUR', label: 'Durum wheat' },
-    { value: 'MAI', label: 'Maize' },
-    { value: 'AVO', label: 'Oat' },
-    { value: 'SEGPAN', label: 'Rye' },
-    { value: 'BLTPAN', label: 'Wheat' },
-    { value: 'TRI', label: 'Triticale' },
+    { value: 'ORGBRAS', label: 'Jęczmień' },
+    { value: 'DUR', label: 'Pszenica konsumpcyjna' },
+    { value: 'MAI', label: 'Kukurydza' },
+    { value: 'AVO', label: 'Owies' },
+    { value: 'SEGPAN', label: 'Żyto' },
+    { value: 'BLTPAN', label: 'Pszenica' },
+    { value: 'TRI', label: 'Pszenżyto' },
   ];
 
     const handleChange = (selectedOption: SelectOptionType | null) => {
@@ -35,7 +35,7 @@ const options = [
             <div className="filters__title"></div>
             <div className="filters__list">
                 <div className="filters__list__item">
-                <Select options={options} onChange={handleChange} placeholder ="Sort by..."/>
+                <Select options={options} onChange={handleChange} placeholder ="Wybierz uprawę( domyślnie pszenica )..."/>
                 </div>
             </div>
         </div>

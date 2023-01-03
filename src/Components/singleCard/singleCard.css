@@ -35,4 +35,58 @@
     width: 80vw;
   }
 
+  h3{
+    font-size: 1.7rem;
+  }
+  .contact-card{
+    font-size: 1em;
+  }
+  .logo-card img{
+    max-height: 90%;
+    max-width: 80%;
+    object-fit:contain;
+  }
+  .info-section-card{
+    font-size: 1em;
+    margin:0 auto;
+  }
+
+}
+@media (max-width: 575px) {
+
+  .container-single-card{
+    display: flex;
+    width: 90vw;
+    height: 300px;
+    padding: 50px 10px 50px 10px;
+    border: 1px solid #cccccc;
+    border-radius: 20px;
+    text-align: center;
+    text-decoration: none;
+    color:black;
+    margin-bottom: 20px;
+    box-shadow: 32px 8px 100px -39px rgba(66, 68, 90, 1);
+  }
+  .logo-card{
+    width: 100em;
+    margin-left: 0;
+  }
+  .logo-card img{
+      max-height: 90%;
+      max-width: 80%;
+      object-fit:contain;
+  }
+}
+  @media (max-width: 440px) {
+
+    .container-single-card{
+      position: relative;
+    }
+
+    .logo-card{
+      width: 5em;
+      position: absolute;
+      top: 40px;
+      left: 10px;
+    }
 }

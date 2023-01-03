@@ -28,11 +28,11 @@ const Navbar: React.FC = () => {
     <nav>
     <Link to='/'><h3 className="logo">AgroHand</h3></Link>
        <ul className={Mobile ? "nav-links-mobile" : "nav-links"} onClick={() => setMobile(false)}>
-          <Link to='/'><li className="topListItem">HOME</li></Link>
-          <Link to='/search'><li className="topListItem">SEARCH ENTERPRISE</li></Link>
-          <Link to='/add'><li className="topListItem">ADD ENTERPRISE</li></Link>
+          <Link to='/'><li className="topListItem">Strona główna</li></Link>
+          <Link to='/search'><li className="topListItem">Wyszukaj firmę</li></Link>
+          <Link to='/add'><li className="topListItem">Dodaj firmę</li></Link>
           {/* {(localStorage.getItem('token'))?<Link to='/profile'><li className="topListUser"><FaUserCircle size={40}></FaUserCircle></li></Link>:<Link to='/sign'><li className="topListItem">SIGN IN</li></Link>}*/}
-          {(localStorage.getItem('token'))?<Link to='/profile'><li><div className="topListUser"><FaUserCircle size={40}></FaUserCircle><div className="user-name">{getUserData()?.username}</div></div></li></Link>:<Link to='/sign'><li className="topListItem">SIGN IN</li></Link>} 
+          {(localStorage.getItem('token'))?<Link to='/profile'><li><div className="topListUser"><FaUserCircle size={40}></FaUserCircle><div className="user-name">{getUserData()?.username}</div></div></li></Link>:<Link to='/sign'><li className="topListItem">Zaloguj</li></Link>} 
 
         </ul>
         <button className='mobile-menu-icon' onClick={() => setMobile(!Mobile)}>

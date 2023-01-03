@@ -39,7 +39,11 @@ const Add: React.FC = () => {
   const deleteHandler = (image: any) => {
     setEnterpriseImages(enterpriseImages.filter((e: any) => e !== image));
     URL.revokeObjectURL(image);
-    // ref.current.value=enterpriseImages;
+  };
+
+  const deleteHandlerLogo = (image: any) => {
+    setEnterpriseLogo(null);
+    URL.revokeObjectURL(image);
   };
 
   const options = [
@@ -109,8 +113,7 @@ const Add: React.FC = () => {
   const [enterpriseLogoError, setEnterpriseLogoError] = useState<string>("");
   const [enterpriseImagesError, setEnterpriseImagesError] = useState<string>("");
   const [enterpriseLatLngError, setEnterpriseLatLngError] = useState<string>("");
-  const [menuIsOpen, setMenuIsOpen] = useState<boolean>();
-   const [typeOfEnterprises, setTypeOfEnterprises] = useState<any>();
+
 
   const validateInputs = (enterprise:enterpriseType) => {
     let isValid = true;
@@ -177,18 +180,18 @@ const Add: React.FC = () => {
     } else {
       setEnterpriseNipError("");
     }
-    // if (!validateNotEmptyInput(enterprise.logoEnterprise)) {
-    //   setEnterpriseLogoError("Pole nie może być puste");
-    //   isValid = false;
-    // } else {
-    //   setEnterpriseLogoError("");
-    // }
-    // if (!validateNotEmptyInput(enterprise.imagesEnterprise)) {
-    //   setEnterpriseImagesError("Pole nie może być puste");
-    //   isValid = false;
-    // } else {
-    //   setEnterpriseImagesError("");
-    // }
+    if (enterprise.logoEnterprise == null) {
+      setEnterpriseLogoError("Brak logo");
+      isValid = false;
+    } else {
+      setEnterpriseLogoError("");
+    }
+    if (enterprise.imagesEnterprise.length === 0) {
+      setEnterpriseImagesError("Brak zdjęć");
+      isValid = false;
+    } else {
+      setEnterpriseImagesError("");
+    }
     if (!validateNotEmptyNumber(enterprise.lat)) {
       console.log(enterprise.lat);
       setEnterpriseLatLngError("Musisz znależć miejsce na mapie");
@@ -205,8 +208,8 @@ const Add: React.FC = () => {
     const dataFormLabels = dataFromMap.label.split(", ");
     if (dataFormLabels[dataFormLabels.length - 1] === "Polska") {
       enterprise.city=dataFormLabels[0];
-      setEnterpriseLat(dataFromMap.x);
-      setEnterpriseLng(dataFromMap.y);
+      setEnterpriseLat(dataFromMap.y);
+      setEnterpriseLng(dataFromMap.x);
       if (dataFormLabels.length === 6) {
         enterprise.zipCode=dataFormLabels[4];
       }
@@ -320,6 +323,7 @@ const Add: React.FC = () => {
       }
     }
   };
+  
 
   // const onInputChange = (
   //   inputValue: string,
@@ -351,15 +355,15 @@ const Add: React.FC = () => {
   return (
     <AuthLayout>
       <div className="add-enterprise">
-        <span className="add-title">Add Enterprise</span>
+        <span className="add-title">Dodaj przedsiębiorstwo</span>
         <form className="add-form" onSubmit={(event) => handleSubmit(event)}>
-          <label>Name Enterprise</label>
+          <label>Nazwa przedsiębiorstwa</label>
           <input
             className="add-input"
             type="text"
             name="name"
             onChange={handleChange}
-            placeholder="Enter your Name..."
+            placeholder="Wprowadź nazwę..."
           />
           <span className="add-error">{enterpriseNameError}</span>
           <label>Logo</label>
@@ -376,16 +380,21 @@ const Add: React.FC = () => {
           <span className="add-error">{enterpriseLogoError}</span>
           <div className="previewLogo">
             {enterpriseLogo && (
-              <>
-                <img className="image" src={enterpriseLogo} alt="error!" />
-              </>
+
+               <div className="image logo-image">
+                <img className="logo-img" src={enterpriseLogo} alt="error!" />
+                <button className="delete-button" type="button" onClick={() => deleteHandlerLogo(enterpriseLogo)}>
+                      X
+                </button>
+                </div>
+
             )}
           </div>
           <div className="map-section">
-            <MapFromAdd setDataFromMap={setDataFromMap} />
+            <MapFromAdd setDataFromMap={setDataFromMap} city={enterprise.city} />
           </div>
           <span className="add-error">{enterpriseLatLngError}</span>
-          <label>City</label>
+          <label>Miejscowość</label>
           <input
             className="add-input"
             type="text"
@@ -393,44 +402,44 @@ const Add: React.FC = () => {
             onChange={handleChange}
             value={enterprise.city}
            
-            placeholder="Enter your City..."
+            placeholder="Wprowadź miejscowość..."
           />
           <span className="add-error">{enterpriseCityError}</span>
-          <label>Street</label>
+          <label>Ulica</label>
           <input
             className="add-input"
             type="text"
             name="street"
             onChange={handleChange}
-            placeholder="Enter your Street..."
+            placeholder="Wprowadź ulicę..."
           />
           <span className="add-error">{enterpriseStreetError}</span>
-          <label>Number</label>
+          <label>Numer posesji</label>
           <input
             className="add-input"
             type="number"
             name="number"
             onChange={handleChange}
-            placeholder="Enter your Number..."
+            placeholder="Wprowadź numer..."
           />
           <span className="add-error">{enterpriseNumberError}</span>
-          <label>Zip Code</label>
+          <label>Kod pocztowy</label>
           <input
             className="add-input"
             type="text"
             name="zipCode"
             value={enterprise.zipCode}
             onChange={handleChange}
-            placeholder="Enter your Code..."
+            placeholder="Wprowadź kod pocztowy.."
           />
           <span className="add-error">{enterpriseZipCodeError}</span>
-          <label>Number of Phone</label>
+          <label>Numer telefonu</label>
           <input
             className="add-input"
             type="tel"
             name="numberPhone"
             onChange={handleChange}
-            placeholder="Enter your Phone..."
+            placeholder="Wprowadź numer telefonu..."
           />
           <span className="add-error">{enterprisePhoneError}</span>
           <label>Em@il</label>
@@ -439,10 +448,10 @@ const Add: React.FC = () => {
             type="text"
             name="email"
             onChange={handleChange}
-            placeholder="Enter your email..."
+            placeholder="Wprowadź email..."
           />
           <span className="add-error">{enterpriseEmailError}</span>
-          <label>Voivodeship</label>
+          <label>Województwo</label>
           <select
             className="add-input"
             name="voivodeship"
@@ -456,15 +465,15 @@ const Add: React.FC = () => {
             ))}
           </select>
           <span className="add-error">{enterpriseVoivodeshipError}</span>
-          <label>Description</label>
+          <label>Opis</label>
           <textarea
             rows={20}
             className="add-textarea"
             name="description"
             onChange={handleChange}
-            placeholder="Enter your Description..."
+            placeholder="Wprowadź Opis..."
           />
-           <label>Category</label>
+           <label>Kategoria</label>
           <Select
                 isMulti
                 isClearable
@@ -473,6 +482,7 @@ const Add: React.FC = () => {
                 name="typeOfEnterprise"
                 options={categoryOptions}
                 // menuIsOpen={menuIsOpen}
+                placeholder="Wybierz kategorie..."
               />
 
           <span className="add-error">{enterpriseDescriptionError}</span>
@@ -482,10 +492,10 @@ const Add: React.FC = () => {
             type="number"
             name="nip"
             onChange={handleChange}
-            placeholder="Enter your NIP..."
+            placeholder="Wprowadź NIP..."
           />
           <span className="add-error">{enterpriseNipError}</span>
-          <label>Images</label>
+          <label>Zdjęcia</label>
 
 
             <label className="upload-image" htmlFor="images"><FiUpload/></label>
@@ -497,7 +507,7 @@ const Add: React.FC = () => {
             name="imagesEnterprise"
             accept=".png, .jpg, .jpeg"
             onChange={handleEnterprisesImagesUpload}
-            placeholder="Upload photos from enterprise..."
+            placeholder="Dodaj zdjęcia..."
             multiple
             ref={ref}
           />
@@ -519,7 +529,7 @@ const Add: React.FC = () => {
           </div>
           
           <button className="add-button">
-            {loading ? "Loading..." : "Register"}
+            {loading ? "Ładowanie..." : "Dodaj"}
           </button>
         </form>
       </div>

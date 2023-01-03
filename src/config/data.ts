@@ -1,59 +1,59 @@
 export const nameCrop = [
   {
-    label: "Durum wheat",
+    label: "Pszenica konsumpcyjna",
 
     value: "DUR",
   },
   {
-    label: "Feed barley",
+    label: "Jęczmień paszowy",
 
     value: "ORGFOUR",
   },
 
   {
-    label: "Feed oats",
+    label: "Owies paszowy",
 
     value: "AVO",
   },
 
   {
-    label: "Feed rye",
+    label: "Żyto paszowe",
 
     value: "SEGFOUR",
   },
 
   {
-    label: "Feed wheat",
+    label: "Pszenica paszowa",
 
     value: "BLTFOUR",
   },
 
   {
-    label: "Maize",
+    label: "Kukurydza",
 
     value: "MAI",
   },
 
   {
-    label: "Malting barley",
+    label: "Jęczmień browarny",
 
     value: "ORGBRAS",
   },
 
   {
-    label: "Milling rye",
+    label: "Żyto przemysłowa",
 
     value: "SEGPAN",
   },
 
   {
-    label: "Milling wheat",
+    label: "Pszenica przemysłowa",
 
     value: "BLTPAN",
   },
 
   {
-    label: "Triticale",
+    label: "Pszenżyto",
 
     value: "TRI",
   },

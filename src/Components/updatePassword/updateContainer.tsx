@@ -76,40 +76,40 @@ const UpdateCotainer= ({userDataToken}:Props) => {
   return (
     <>
       <div className="passwords">
-        <span className="passwordTitle">Update Password</span>
+        <span className="passwordTitle">Zmień hasło</span>
         <form
           className="passwordsForm"
           onSubmit={(event) => handleSubmit(event)}
         >
-          <label>Old Password</label>
+          <label>Stare hasło</label>
           <InputComponent
             type="password"
             value={passwrordsForm.oldPassword}
             name="oldPassword"
             onChange={onChangeHenler}
-            placeholder="Write your old password..."
+            placeholder="Wpisz stare hasło..."
           />
-            {!oldPasswordValid && <p className="error">Old password is required</p>}
-          <label>New Password</label>
+            {!oldPasswordValid && <p className="error">Stare hasło jest wymagane</p>}
+          <label>Nowe hasło</label>
           <InputComponent
             type="password"
             name="newPassword"
             onChange={onChangeHenler}
            value={passwrordsForm.newPassword}
-            placeholder="Enter your new password..."
+            placeholder="Wpisz nowe hasło..."
           />
-            {!newPasswordValid && <p className="error">New password is required, must be at least 8 characters long and must meet the requirements</p>}
-          <label>Confirm password</label>
+            {!newPasswordValid && <p className="error">Nowe hasło jest wymagane, musi mieć co najmniej 8 znaków i spełniać wymagania</p>}
+          <label>Potwierdź hasło</label>
           <InputComponent
             type="password"
             value={passwrordsForm.confirmPassword}
             name="confirmPassword"
             onChange={onChangeHenler}
             
-            placeholder="Confirm your new password..."
+            placeholder="Potwierdź hasło..."
           />
-            {!passwordValid && <p className="error">Confirm password is required and must match the new password</p>}
-          <button className="registerButton">Update</button>
+            {!passwordValid && <p className="error">Potwierdzenie hasła jest wymagane i musi być zgodne z nowym hasłem</p>}
+          <button className="registerButton">Zmień</button>
           {message && <span  className={message === "Password has been updated" ? "success" : "bad"} >{message}</span>}
         </form>
       </div>

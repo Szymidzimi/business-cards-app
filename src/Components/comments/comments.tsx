@@ -47,14 +47,14 @@ const Comments = ({singleEnterprise,setSingleEnterprises}:Props) => {
   };
   const validateComment = (comment: string) => {
     
-    if (validateNotEmptyInputWithSpaces(comment)) {
-      setCommentError("Pole nie może być puste");
-      return false;
-    }
-    if (validateXss(comment)) {
-      setCommentError("Nie można używać znaków specjalnych");
-      return false;
-    }
+    // if (validateNotEmptyInputWithSpaces(comment)) {
+    //   setCommentError("Pole nie może być puste");
+    //   return false;
+    // }
+    // if (validateXss(comment)) {
+    //   setCommentError("Nie można używać znaków specjalnych");
+    //   return false;
+    // }
     setCommentError("");
     return true;
   };
@@ -98,9 +98,9 @@ const Comments = ({singleEnterprise,setSingleEnterprises}:Props) => {
 
 <div className="comment-content">
           <div className="entrprise-header">
-            <h5 className="entrprise-title">Comments</h5>
+            <h5 className="entrprise-title">Komentarze</h5>
             <div className="ratings-header">
-            <div>Your Rating</div>
+            <div>Twoja ocena:</div>
             <div><Rating
             className="rating-icon"
                   onClick={handleRating}
@@ -116,7 +116,7 @@ const Comments = ({singleEnterprise,setSingleEnterprises}:Props) => {
           <div className="entrprise-body">
             {/* <!-- Location --> */}
             <div className="block-2">
-              <div className="title-section">Add comments:</div>
+              <div className="title-section">Dodaj komentarz:</div>
               <div className="details-section-comments">
               <form
               onSubmit={(event) => handleSubmitOfForm(event)}
@@ -132,7 +132,7 @@ const Comments = ({singleEnterprise,setSingleEnterprises}:Props) => {
               <div className="error-message">{commentError}</div>
               <div className="comments-footer">
                 <button className="registerButton rightButton">
-                  Add comment
+                  Dodaj
                 </button>
               </div>
             </form>
@@ -140,11 +140,11 @@ const Comments = ({singleEnterprise,setSingleEnterprises}:Props) => {
             </div>
             {/* <!-- About --> */}
             <div className="block-2">
-              <div className="title-section">All Comments:</div>
+              <div className="entrprise-title">Wszystkie komentarze:</div>
               {singleEnterprise.comments[0]? singleEnterprise.comments.map((enterprise) => (
               <div className="comment-content-single-comment" key={enterprise.userId.toString()}>
                 <div className="author-section-comments">
-                  <div>{enterprise.userName}</div>
+                  <div className="user-name-com">{enterprise.userName}</div>
                   {(enterprise.rating)?
                   <Rating
                     className="rating-icon"
@@ -168,7 +168,7 @@ const Comments = ({singleEnterprise,setSingleEnterprises}:Props) => {
               </div>
               )):
               <div className="details-section">
-                No comments
+                Brak komentarzy
               </div>
               }
             </div>

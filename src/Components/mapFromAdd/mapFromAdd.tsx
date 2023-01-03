@@ -1,13 +1,22 @@
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
-import "./mapFromAdd.css";
 import { GeoSearchControl, OpenStreetMapProvider } from "leaflet-geosearch";
 import { useEffect } from "react";
+import Leaflet  from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-geosearch/dist/geosearch.css";
+import "./mapFromAdd.css";
 
 interface dataFromMapProps {
   setDataFromMap: React.Dispatch<any>;
+  city: string;
 }
+
+
+const markerIcon =new Leaflet.Icon({
+  iconUrl:"https://icon-library.com/images/marker-icon/marker-icon-16.jpg",
+  iconSize:[45,45]
+})
+
 
 const SearchControl = (props: any) => {
   const map = useMap();
@@ -35,9 +44,7 @@ const MapFromAdd = ({ setDataFromMap }: dataFromMapProps) => {
         countrycodes: "pl",
         amenity:"village",
         limit:5,
-               // 'accept-language': 'pl',
-        // addressdetails: 1,
-        type:'administrative'
+        'accept-language': 'pl',
       },
     }
   );
@@ -52,6 +59,7 @@ const MapFromAdd = ({ setDataFromMap }: dataFromMapProps) => {
         provider={prov}
         showMarker={true}
         showPopup={false}
+        marker={{ icon: markerIcon }}
         popupFormat={({ query, result }: { query: any; result: any }) => {
           console.log(query, result);
           console.log(prov);
@@ -63,7 +71,7 @@ const MapFromAdd = ({ setDataFromMap }: dataFromMapProps) => {
         retainZoomLevel={false}
         animateZoom={true}
         autoClose={false}
-        searchLabel={"Enter address, please"}
+        searchLabel={"Wyszukaj adres..."}
         keepResult={true}
       />
     </MapContainer>

@@ -6,6 +6,7 @@ import {
   validateEmail,
   validateLogin,
   validateNotEmptyInput,
+  validatePassword,
 } from "../../Components/inputComponent/validation";
 
 const Register: React.FC = () => {
@@ -25,11 +26,11 @@ const Register: React.FC = () => {
   }) => {
     setUsernameValid(validateLogin(user.username));
     setEmailValid(validateEmail(user.email));
-    setPasswordValid(validateNotEmptyInput(user.password));
+    setPasswordValid(validatePassword(user.password));
     return (
       validateLogin(user.username) &&
       validateEmail(user.email) &&
-      validateNotEmptyInput(user.password)
+      validatePassword(user.password)
     );
   };
 
@@ -51,7 +52,7 @@ const Register: React.FC = () => {
           body: JSON.stringify(user),
         });
         const data = await response.json();
-        if (data.message === "User already exists") {
+        if (data.message === "Użytkownik o takiej nazwie lub emailu już istnieje") {
           setUserExists(true);
         } else {
           setUserExists(false);
@@ -75,12 +76,12 @@ const Register: React.FC = () => {
   return (
     <>
       <div className="register">
-        <span className="registerTitle">Register</span>
+        <span className="registerTitle">Rejestracja</span>
         <form
           className="registerForm"
           onSubmit={(event) => handleSubmit(event)}
         >
-          <label>Username</label>
+          <label>Nazwa użytkownika</label>
           <InputComponent
             type="text"
             name="username"
@@ -88,11 +89,11 @@ const Register: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUsername(e.target.value)
             }
-            placeholder="Enter your username..."
+            placeholder="Wprowadź swoją nazwe użytkownika..."
           />
           {!usernameValid && (
             <span className="registerError">
-              Username must be at least 3 characters long
+              Nazwa użytkownika musi mieć co najmniej 3 znaki!
             </span>
           )}
           <label>Email</label>
@@ -103,12 +104,12 @@ const Register: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUserEmail(e.target.value)
             }
-            placeholder="Enter your email..."
+            placeholder="Wprowadź swój email..."
           />
           {!emailValid && (
-            <span className="registerError">Email is not valid</span>
+            <span className="registerError">Email nie jest prawidłowy!</span>
           )}
-          <label>Password</label>
+          <label>Hasło</label>
           <InputComponent
             type="password"
             name="password"
@@ -116,16 +117,16 @@ const Register: React.FC = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUserPassword(e.target.value)
             }
-            placeholder="Enter your password..."
+            placeholder="Wprowadź swoje hasło..."
           />
           {!passwordValid && (
             <span className="registerError">
-              Password must be at least 6 characters long
+              Hasło musi mieć co najmniej 8 znaków w tym jedną cyfrę i znak specjalny!
             </span>
           )}
-          {userExists && <p className="error">User exist</p>}
+          {userExists && <p className="error">Użytkownik istnieje!</p>}
 
-          <button className="registerButton">Register</button>
+          <button className="registerButton">Zarejestruj</button>
         </form>
       </div>
     </>

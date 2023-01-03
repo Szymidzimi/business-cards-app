@@ -2,7 +2,6 @@ import "./map.css";
 import 'leaflet/dist/leaflet.css';
 import 'leaflet/dist/leaflet'
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import { useState } from "react";
 import Leaflet  from "leaflet";
 import { enterprise } from "../../config/types";
 
@@ -18,7 +17,7 @@ const Map= (props:{enterprise:enterprise}) => {
     52.232222, 21.008333
   ]
   if(props.enterprise.longitude&&props.enterprise.latitude){
-    latlngs=[props.enterprise.longitude, props.enterprise.latitude]
+    latlngs=[props.enterprise.latitude, props.enterprise.longitude]
   }
 
 
@@ -30,6 +29,7 @@ const Map= (props:{enterprise:enterprise}) => {
     scrollWheelZoom:true
   }
   return (
+    <div className="map-in-enterprise">
     <MapContainer {...propMap} >
       <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -42,6 +42,7 @@ const Map= (props:{enterprise:enterprise}) => {
         </Popup>
       </Marker>
     </MapContainer>
+    </div>
   );
 };
 

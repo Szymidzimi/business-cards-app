@@ -25,6 +25,7 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-leaflet": "^4.0.2",
+    "react-modal": "^3.16.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.0",
@@ -56,5 +57,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-modal": "^3.13.1"
   }
 }

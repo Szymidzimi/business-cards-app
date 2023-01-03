@@ -43,3 +43,10 @@ export type cereal={
     marketName: string,
     stageName: string,
 }
+
+export type PaginationProps = {
+  numberOfEnterprises: number;
+  enterprisesPerPage: number;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+  currentPage: number;
+};

@@ -12,7 +12,7 @@ export const validateNotEmptyNumber = (input: number) => {
 }
 //validate login not empty without special characters   
 export const validateLogin = (login: string) => {
-  const loginRegex = /^[a-zA-Z0-9]{3,}$/;
+  const loginRegex = /^[a-zA-Z0-9]{4,}$/;
   return loginRegex.test(login) && validateSqlInjection(login) && validateXss(login);
 }
 //validate password not empty with at least one special charters and numbers minimum 8 characters
@@ -45,6 +45,9 @@ export const validateXss = (input: string) => {
     const xssRegex = /<[^>]*>?/g;
     return !xssRegex.test(input);
 }
+
+//validation whether the text does not contain polish vulgar words
+    
 
 
 // //validate to check input for website

@@ -48,7 +48,7 @@ const ChartsComponent = () => {
             labels:  dataCereal.map((item:cereal)=>item.beginDate),
             datasets: [
               {
-                label:'zboże',
+                label: "Pszenica",
                 data: dataCereal.map((item:cereal)=>(parseFloat(item.price.substring(1)))*usdCourse),
                 fill: true,
                 backgroundColor: "#00000033",
@@ -101,12 +101,12 @@ const ChartsComponent = () => {
 
 
   return (
-    <>
+    <div className="chart-price">
     <FilterPrices setCereal={setCereal} fetchDatasCereal={fetchDatasCereal}/>
     {usdCourse && dataCereal && <Line
         data={getDataToChart(dataCereal)}
       />}
-      </>
+      </div>
   );
 };
 

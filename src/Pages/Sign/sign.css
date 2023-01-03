@@ -25,7 +25,7 @@
   margin: auto;
   padding: 17px 30px;
   border-radius: 10px;
-  background: #00FF00;
+  background: #008f00;
   color: #fff;
   outline: none;
 }
@@ -35,6 +35,14 @@
 }
 .sign p{
   margin-top: 10px;
+}
+.register-button{
+
+  padding: 10px 30px;
+  border-radius: 10px;
+  background: #c00000;
+  color: #fff;
+  outline: none;
 }
 
 @media (max-width: 1024px) {

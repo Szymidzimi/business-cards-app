@@ -18,10 +18,8 @@ h2 {
     padding: 1rem;
 }
 .filter-button-active {
-    border: 1px solid #929292;
-    border-radius: 50%;
-    color: #00FF00;
-    background-color: #929292;
+    color: #00ff00 !important;
+    font-size: 4em;
 }
 .search-container input {
     background: #fff;
@@ -44,6 +42,12 @@ h2 {
     margin: 10px auto 25px;
     box-shadow: 1px 1px 40px 1px rgb(0 0 0 / 8%);
   }
+  .leaflet-container{
+    height: 100% !important;
+    width: 100% !important;
+    border-radius: 20px;
+    position: absolute;
+  }
 
   .row-container{
     display: flex;
@@ -54,6 +58,16 @@ h2 {
   .width-select{
     width: 50%;
     margin: auto;
+  }
+  .button-reset{
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 10px;
+    margin: 0.5rem auto;
+   
+    font-size: 17px;
+    color: #929292;
+    cursor: pointer;
   }
 
   @media (max-width: 768px) {

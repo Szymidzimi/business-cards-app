@@ -1,12 +1,10 @@
 
-import React, { useState } from "react";
 import { enterprise } from "../../config/types";
 
 type Props = {
   enterprises: enterprise[];
   setSearchResult: (searchResult: enterprise[]) => void;
   };
-
 const SearchBar=({enterprises ,setSearchResult}:Props) => {
 
   const filterEnterprisesByName = (name: string) => {

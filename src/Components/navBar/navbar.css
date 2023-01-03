@@ -7,7 +7,7 @@
 }
 header{
   height: 15vh;
-  color: #00FF00 !important;
+  color: #008f00 !important;
   text-decoration: none;
 }
 a {
@@ -30,7 +30,7 @@ nav {
 }
 .logo {
   font-size: 40px;
-  color: #00FF00;
+  color: #008f00;
 }
 .nav-links {
   display: flex;
@@ -44,7 +44,7 @@ nav {
   padding: 10px 20px;
   margin: 0 10px;
   cursor: pointer;
-  text-transform: capitalize;
+  text-transform: uppercase;
 }
 .hero {
   text-align: center;
@@ -67,12 +67,13 @@ button {
   margin:  auto;
   padding: 10px 20px;
   border-radius: 10px;
-  background: #00FF00;
+  background: #008f00;
   color: #fff;
   outline: none;
+  margin-right: 20px;
 }
 .topListUser{
-  color: #00FF00;
+  color: #008f00;
   display: flex;
   justify-content: center;
   align-items: center;

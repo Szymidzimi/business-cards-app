@@ -65,9 +65,9 @@ const Sign: React.FC = () => {
 
   return (
     <div className="sign">
-      <span className="signTitle">Sign In</span>
+      <span className="signTitle">Zaloguj</span>
       <form className="signForm" onSubmit={(event) => handleSubmit(event)}>
-        <label>Username / Email</label>
+        <label>Nazwa użytkownika / Email</label>
         <InputComponent
           type="text"
           name="login"
@@ -75,10 +75,10 @@ const Sign: React.FC = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setLogin(e.target.value)
           }
-          placeholder="Enter your username / email..."
+          placeholder="Wprowadź swoją nazwę/email..."
         />
         {!loginValid && <p className="error">Login is not valid</p>}
-        <label>Password</label>
+        <label>Hasło</label>
         <InputComponent
           type="password"
           name="password"
@@ -86,17 +86,16 @@ const Sign: React.FC = () => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setPassword(e.target.value)
           }
-          placeholder="Enter your password..."
+          placeholder="Wprowadź swoje hasło..."
         />
-        {!passwordValid && <p className="error">Password is not valid</p>}
-        {badCredentials && <p className="error">Bad credentials</p>}
+        {badCredentials && <p className="error">Nie poprawny login lub hasło</p>}
         <button className="signButton" type="submit">
-          SIGN IN
+          Zaloguj
         </button>
       </form>
 
       <p>
-        Don't Have an account? <Link to="../register">SIGN UP</Link>
+        Nie posiadasz jeszcze konta? <Link to="../register"><span className="register-button">ZAREJESTRUJ SIĘ</span></Link>
       </p>
     </div>
   );

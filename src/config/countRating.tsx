@@ -12,6 +12,5 @@ export  const countRating = (singleEnterprise:enterprise) => {
     if(count===0 && sum===0){
       return 0;
     }
-    console.log(sum/count)
     return sum / count;
   };
