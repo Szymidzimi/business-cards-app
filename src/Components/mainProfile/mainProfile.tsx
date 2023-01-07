@@ -6,6 +6,7 @@ import UpdateCotainer from "../updatePassword/updateContainer";
 import { useNavigate } from "react-router-dom";
 import { enterprise } from "../../config/types";
 import InputComponent from "../inputComponent/inputComponent";
+import Warehouse from "../warehouse/warehouse";
 
 const MainProfile = () => {
   const navigate = useNavigate();
@@ -53,7 +54,8 @@ const MainProfile = () => {
       }
     );
     const data = await response.json();
-    setEnterprises(data);
+    console.log(data)
+    userDataToken?.id && fetchEnterpriseByOwnerName(userDataToken.id)
   };
 
   useEffect(() => {
@@ -113,6 +115,7 @@ const MainProfile = () => {
 
         <UpdateCotainer userDataToken={userDataToken}></UpdateCotainer>
         <div className="table-section">
+        <span className="passwordTitle">Zarejestrowane przedsiębiorstwa</span>
           {enterprises.map((enterprise) => (
             <div className="one-line-own" key={enterprise._id}>
               <div className="one-line-own-text">
@@ -139,6 +142,7 @@ const MainProfile = () => {
             </div>
           ))}
         </div>
+            <Warehouse></Warehouse>
       </div>
     </>
   );

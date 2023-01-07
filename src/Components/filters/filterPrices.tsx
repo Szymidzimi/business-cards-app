@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import Select from 'react-select'
 
 
-type Props = {
-    // enterprises: enterprise[];
+interface Props {
     setCereal: (cereal:string) => void;
-    fetchDatasCereal: (type: string) => void;
+    setNameOfPlant?: (cereal:string) => void;
+    fetchDatasCereal?: (type: string) => void;
     };
 
 type SelectOptionType = {
@@ -13,7 +13,7 @@ type SelectOptionType = {
     value: string;
   };
 
-const FilterPrices = ({setCereal, fetchDatasCereal }:Props) => {
+const FilterPrices = ({setCereal, setNameOfPlant, fetchDatasCereal }:Props) => {
 
 const options = [
     { value: 'ORGBRAS', label: 'Jęczmień' },
@@ -26,8 +26,9 @@ const options = [
   ];
 
     const handleChange = (selectedOption: SelectOptionType | null) => {
-      selectedOption && fetchDatasCereal(selectedOption?.value);
+      selectedOption && fetchDatasCereal && fetchDatasCereal(selectedOption?.value);
       selectedOption && setCereal(selectedOption?.value);
+      selectedOption && setNameOfPlant && setNameOfPlant(selectedOption?.label);
     };
 
     return (
