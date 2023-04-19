@@ -1,3 +1,6 @@
+body{
+  scroll-behavior: smooth;
+}
 
 .main-container-to-enterprise{
   display:flex;

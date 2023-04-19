@@ -11,6 +11,7 @@ import Warehouse from "../warehouse/warehouse";
 const MainProfile = () => {
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [enterprises, setEnterprises] = useState<enterprise[]>([]);
   const [userDataToken, setUserDataToken] = useState<
     TokenUserData | null | undefined
@@ -29,32 +30,33 @@ const MainProfile = () => {
     // window.location.reload();
   };
 
-  // const fetchDeleteUser = async (id: string) => {
-  //   const response = await fetch(`/users/deleteUser/${id}`, {
-  //     method: "DELETE",
-  //   });
-  //   const data = await response.json();
-  //   setEnterprises(data);
-  // };
+  const fetchDeleteUser = async (id: string) => {
+    const response = await fetch(`/user/delete/${id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        // Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({ password }),
+    });
+    const data = await response.json();
+    setMessage(data.message);
+    if(data.message === "Konto zostało usunięte") {
+      logoutProfile();
+    }
+  };
 
-  //     const navigate=useNavigate();
-  //     async function logout() {
-  //     localStorage.removeItem("token")
-  //     navigate("/");
-  // }
-  // const passwordHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //     setPassword(event.target.value);
-  //   };
+
 
   const fetchDeleteEnterprise = async (id: number) => {
     const response = await fetch(
       `/enterprises/deleteEnterprise/${id}/${userDataToken?.id}`,
       {
         method: "DELETE",
-      }
+      },
+
     );
     const data = await response.json();
-    console.log(data)
     userDataToken?.id && fetchEnterpriseByOwnerName(userDataToken.id)
   };
 
@@ -93,10 +95,13 @@ const MainProfile = () => {
 
             </div>
           </div>
-          <div>
+          <div className="to-delete">
             <form
               className="passwordsForm"
-              // onSubmit={(event) => handleSubmit(event)}
+              onSubmit={(event) => {
+                event.preventDefault();
+                userDataToken?.id && fetchDeleteUser(userDataToken.id);
+              }}
             >
               <label>Podaj hasło</label>
               <InputComponent
@@ -110,6 +115,7 @@ const MainProfile = () => {
               />
               <button className="delete-buttonv2">Usuń konto</button>
             </form>
+            <div className="message-delete">{message}</div>
           </div>
         </div>
 

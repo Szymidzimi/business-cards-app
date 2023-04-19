@@ -75,7 +75,6 @@ const Search = () => {
   };
 
   const fetchEnterprisesByDistance = async () => {
-    console.log(latLng, distance);
 
     const jsonEnterprises = await fetch(
       `/enterprises/getEnterpriseByDistance/${latLng.lat}/${latLng.lng}/${distance}`
@@ -83,7 +82,6 @@ const Search = () => {
 
     const enterprises = await jsonEnterprises.json();
     setEnterprises(enterprises);
-    console.log(enterprises);
     setSearchResult(enterprises);
     setCurrentPage(1);
   };
@@ -92,7 +90,6 @@ const Search = () => {
     const jsonEnterprises = await fetch("/enterprises/getEnterprises");
     const enterprises = await jsonEnterprises.json();
     setEnterprises(enterprises);
-    console.log(enterprises);
     setSearchResult(enterprises);
     setCurrentPage(1);
   };
@@ -102,7 +99,6 @@ const Search = () => {
     );
     const enterprises = await jsonEnterprises.json();
     setEnterprises(enterprises);
-    console.log(enterprises);
     setSearchResult(enterprises);
     setCurrentPage(1);
   };

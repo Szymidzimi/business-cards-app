@@ -43,7 +43,6 @@
     display: none;
   }
   .add-button{
-    margin: 0 auto;
     padding: 17px 30px;
     border-radius: 10px;
     background: #008f00;
@@ -125,7 +124,7 @@
       width: 80vw;
     }
     .add-button{
-      margin: 0 auto;
+      margin: 0 auto !important;
     }
   
     .add-form{

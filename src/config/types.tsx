@@ -50,3 +50,13 @@ export type PaginationProps = {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   currentPage: number;
 };
+
+export type grain = {
+  _id: string;
+  nameOfPlant: string;
+  quantity: number;
+  unit: string;
+  area: number;
+  price: number;
+  cropCost: number;
+};

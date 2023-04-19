@@ -13,16 +13,23 @@
 .warehouse-of-agricultural-products-title{
     font-size: 30px;
     font-weight: 600;
+    margin: 0 auto;
     margin-bottom: 20px;
+
 }
 .warehouse-of-agricultural-products-button-section{
     display: flex;
     flex-direction: row;
     width: 100%;
+    align-items: center;
+}
+.add-button{
+  margin-left: 10px !important;
 }
 .warehouse-of-agricultural-products-button-text{
     font-size: 20px;
     font-weight: 600;
+    margin: 0 auto;
     margin-right: 10px;
 }
 .form-warehouse{
@@ -32,6 +39,39 @@
     padding: 20px;
     margin: 70px auto;
 }
+.message-crop-warning{
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: red;
+    margin-bottom: 10px;
+    margin: 0 auto;
+}
+.doughnut-crop{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.top-crop label{
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.dought-one{
+  text-align: center;
+  margin-right: 30px;
+  width: 30%;
+}
+.dought-two{
+  text-align: center;
+
+  width: 30%;
+}
+.dought-three{
+  text-align: center;
+  margin-left: 30px;
+  width: 30%;
+}
+
 .name-plant{
     display: flex;
     flex-direction: row;
@@ -49,4 +89,15 @@
     font-size: 1.4rem;
     font-weight: 600;
     margin-bottom: 10px;
+}
+@media (max-width: 1024px) {
+  .doughnut-crop{
+    flex-direction: column;
+}
+.dought-one{
+  margin-right: 0;
+}
+.dought-two{
+  margin-left: 0;
+}
 }

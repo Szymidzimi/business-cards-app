@@ -1,12 +1,12 @@
 import "./add.css";
 import { useNavigate } from "react-router";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, useRef, useState } from "react";
 import AuthLayout from "../../Layout/authLayout";
 import MapFromAdd from "../../Components/mapFromAdd/mapFromAdd";
 import { validateEmail, validateNotEmptyInput, validateNotEmptyInputWithSpaces, validateNotEmptyNumber, validatePhone, validateZipCode } from "../../Components/inputComponent/validation";
 import { FiUpload } from "react-icons/fi";
 import { getUserData } from "../../config/decodeUser";
-import Select, { ActionMeta, InputActionMeta, MultiValue } from 'react-select';
+import Select, {  MultiValue } from 'react-select';
 import { categoryOptions } from "../../config/categoryValue";
 
 export type imagesType={
@@ -118,13 +118,12 @@ const Add: React.FC = () => {
   const validateInputs = (enterprise:enterpriseType) => {
     let isValid = true;
     if (validateNotEmptyInputWithSpaces(enterprise.name)) {
-      console.log(enterprise.name);
       setEnterpriseNameError("Pole nie może być puste");
       isValid = false;
     } else {
       setEnterpriseNameError("");
     }
-    if (!validateNotEmptyInput(enterprise.city)) {
+    if (validateNotEmptyInputWithSpaces(enterprise.city)) {
       setEnterpriseCityError("Pole nie może być puste");
       isValid = false;
     } else {
@@ -149,7 +148,6 @@ const Add: React.FC = () => {
       setEnterpriseZipCodeError("");
     }
     if (!validatePhone(enterprise.numberPhone)) {
-      console.log((!validatePhone(enterprise.numberPhone)));
       setEnterprisePhoneError("Niepoprawny numer telefonu");
       isValid = false;
     } else {
@@ -193,7 +191,6 @@ const Add: React.FC = () => {
       setEnterpriseImagesError("");
     }
     if (!validateNotEmptyNumber(enterprise.lat)) {
-      console.log(enterprise.lat);
       setEnterpriseLatLngError("Musisz znależć miejsce na mapie");
       isValid = false;
     } else {
@@ -252,16 +249,6 @@ const Add: React.FC = () => {
     }
   };
 
-  // const [lat,setLat]=useState<number>()
-  // const [lon,setLon]=useState<number>()
-
-  // useEffect(()=>{
-  //     navigator.geolocation.getCurrentPosition((postion)=>{
-  //         setLat(postion.coords.latitude)
-  //         setLon(postion.coords.longitude)
-  //     })
-  // })
-  // console.log(lat,lon);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLSelectElement>|React.ChangeEvent<HTMLTextAreaElement>) => 
   setEnterprise(prevState => ({...prevState, [e.target.name]: e.target.value}))
@@ -324,32 +311,6 @@ const Add: React.FC = () => {
     }
   };
   
-
-  // const onInputChange = (
-  //   inputValue: string,
-  //   { action, prevInputValue }: InputActionMeta
-  // ) => {
-  //   if (action === "input-change") return inputValue;
-  //   if (action === "menu-close") {
-  //     if (prevInputValue) setMenuIsOpen(true);
-  //     else setMenuIsOpen(undefined);
-  //   }
-  //   // setEnterprise(prevState => ({...prevState, typeOfEnterprises: inputValue}))
-  //   console.log(action);
-  //   // setEnterprise(enterprise, typeOfEnterprises[]: prevInputValue})
-  // };
-  // function handleSelect(data:any) {
-  //   console.log(data);
-  //   setTypeOfEnterprises(data)
-  //   console.log(typeOfEnterprises)
-  // }
-
-//function to handle the change of the select and save data to array enterprise.typeOfEnterprises
-  // const handleSelect = (e: any) => {
-  //   console.log(e)
-  //   setEnterprise(prevState => ({...prevState, typeOfEnterprises: e}))
-  //   console.log(enterprise);
-  // }
 
 
   return (

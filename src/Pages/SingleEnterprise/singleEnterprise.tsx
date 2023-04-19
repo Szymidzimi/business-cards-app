@@ -16,19 +16,6 @@ const SingleEnterprise = () => {
     null
   );
 
-  // const countRating = () => {
-  //   let sum = 0;
-  //   let count = 0;
-  //   singleEnterprise?.comments.forEach((comment) => {
-  //     if(comment.rating){
-  //         sum += comment.rating;
-  //         count++;
-  //       }
-  //   });
-  //   console.log(sum/count)
-  //   return sum / count;
-  // };
-
 
   const fetchEnterprises = async () => {
     const jsonEnterprise = await fetch(

@@ -36,6 +36,7 @@
 }
 .button-search{
     margin: 1.5rem auto;
+    margin-left: 150px !important;
     width: 20%;
     font-size: 17px;
     color: #929292;

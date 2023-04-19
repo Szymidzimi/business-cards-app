@@ -29,6 +29,19 @@
 .info-card{
   text-overflow: ellipsis;
 }
+.main-container-enterprise-in-home{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 60px auto;
+
+}
+.home-Title{
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
 
 @media (max-width: 1024px) {
   .container-single-card{

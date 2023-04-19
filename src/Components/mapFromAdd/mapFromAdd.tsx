@@ -61,8 +61,6 @@ const MapFromAdd = ({ setDataFromMap }: dataFromMapProps) => {
         showPopup={false}
         marker={{ icon: markerIcon }}
         popupFormat={({ query, result }: { query: any; result: any }) => {
-          console.log(query, result);
-          console.log(prov);
           setDataFromMap(result);
           return `${result.label}`;
         }}

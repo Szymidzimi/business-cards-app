@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import {
   validateEmail,
   validateLogin,
-  validateNotEmptyInput,
   validatePassword,
 } from "../../Components/inputComponent/validation";
 
@@ -124,7 +123,7 @@ const Register: React.FC = () => {
               Hasło musi mieć co najmniej 8 znaków w tym jedną cyfrę i znak specjalny!
             </span>
           )}
-          {userExists && <p className="error">Użytkownik istnieje!</p>}
+          {userExists && <p className="error">Użytkownik o takim mailu lub nazwie istnieje!</p>}
 
           <button className="registerButton">Zarejestruj</button>
         </form>
