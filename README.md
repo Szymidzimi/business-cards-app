@@ -1,46 +1,26 @@
-# Getting Started with Create React App
+# Business Cards App for Agricultural Enterprises
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This project is a web application designed to support the presentation of businesses in the agricultural sector. It is aimed at small and large farms, agricultural companies, and other entities within the agricultural industry. The platform provides tools to showcase business profiles, making it easier for companies to present their offerings, services, and products.  
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Price Comparison Page**: A dedicated page for comparing the prices of agricultural products, helping businesses and farmers stay informed about market trends.  
+- **Virtual Inventory System**: A profile page that serves as a virtual warehouse where users can:
+  - List owned agricultural products.
+  - View an overview of their inventory.
+  - Estimate the total value of their stock at the farm level.  
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Tech Stack
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The application is built using the **MERN stack**:
+- **MongoDB**: Database for storing user profiles, product information, and pricing data.
+- **Express.js**: Backend framework for handling API requests and server logic.
+- **React.js**: Frontend library for building a dynamic and interactive user interface.
+- **Node.js**: Runtime environment for executing server-side JavaScript.  
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+![image](https://github.com/user-attachments/assets/41f5fae8-ef45-4aef-af6c-ed4ec72b85c4)
+![image](https://github.com/user-attachments/assets/8a0d6bd3-1abd-4d19-80a1-52533e170d94)
+![image](https://github.com/user-attachments/assets/5149e495-5f34-412e-b804-7da7f9b374e7)
+![image](https://github.com/user-attachments/assets/c0f04a87-d323-4da1-90e4-fb1332742824)
